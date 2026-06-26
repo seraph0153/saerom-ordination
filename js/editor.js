@@ -139,6 +139,16 @@ window.SaeromVisualEditor = (function() {
     const navBgOpacity = parseFloat(getStyleVal(navEl, '--nav-bg-opacity', '0.85'));
     const navBorderRadius = parseInt(getStyleVal(navEl, '--nav-border-radius', '50'));
 
+    // Extract current navigation menu text
+    const logoSpan = document.querySelector('.nav-logo span');
+    const logoText = logoSpan ? logoSpan.innerText.trim() : '새롬교회';
+    
+    const menuSpans = document.querySelectorAll('.nav-menu a span');
+    const menuTexts = [];
+    menuSpans.forEach(span => {
+      menuTexts.push(span.innerText.trim());
+    });
+
     const introSectionPadding = parseInt(getStyleVal(introSectionEl, '--intro-section-padding', '100'));
     const introCardMaxWidth = parseInt(getStyleVal(introCardEl, '--intro-card-max-width', '800'));
     const introCardPadding = parseInt(getStyleVal(introCardEl, '--intro-card-padding', '40'));
@@ -194,6 +204,31 @@ window.SaeromVisualEditor = (function() {
               <div class="admin-control-group">
                 <label>모서리 둥글기 <span class="value-display" id="valNavBorderRadius">${navBorderRadius}px</span></label>
                 <input type="range" class="admin-slider" id="ctrlNavBorderRadius" min="0" max="50" value="${navBorderRadius}">
+              </div>
+              <div class="admin-section-title" style="margin-top: 15px; margin-bottom: 8px;">메뉴 글씨 수정</div>
+              <div class="admin-control-group">
+                <label>로고 텍스트</label>
+                <input type="text" id="ctrlNavLogoText" value="${logoText}" style="width: 100%; padding: 6px; border-radius: 4px; border: 1px solid #CBD5E1; font-size: 0.85rem; color: #334155; background-color: #FFFFFF; outline: none; box-sizing: border-box;">
+              </div>
+              <div class="admin-control-group">
+                <label>메뉴 1 이름 (초청)</label>
+                <input type="text" id="ctrlNavMenu1" value="${menuTexts[0] || '초청'}" style="width: 100%; padding: 6px; border-radius: 4px; border: 1px solid #CBD5E1; font-size: 0.85rem; color: #334155; background-color: #FFFFFF; outline: none; box-sizing: border-box;">
+              </div>
+              <div class="admin-control-group">
+                <label>메뉴 2 이름 (임직자)</label>
+                <input type="text" id="ctrlNavMenu2" value="${menuTexts[1] || '임직자'}" style="width: 100%; padding: 6px; border-radius: 4px; border: 1px solid #CBD5E1; font-size: 0.85rem; color: #334155; background-color: #FFFFFF; outline: none; box-sizing: border-box;">
+              </div>
+              <div class="admin-control-group">
+                <label>메뉴 3 이름 (예배안내)</label>
+                <input type="text" id="ctrlNavMenu3" value="${menuTexts[2] || '예배안내'}" style="width: 100%; padding: 6px; border-radius: 4px; border: 1px solid #CBD5E1; font-size: 0.85rem; color: #334155; background-color: #FFFFFF; outline: none; box-sizing: border-box;">
+              </div>
+              <div class="admin-control-group">
+                <label>메뉴 4 이름 (오시는길)</label>
+                <input type="text" id="ctrlNavMenu4" value="${menuTexts[3] || '오시는길'}" style="width: 100%; padding: 6px; border-radius: 4px; border: 1px solid #CBD5E1; font-size: 0.85rem; color: #334155; background-color: #FFFFFF; outline: none; box-sizing: border-box;">
+              </div>
+              <div class="admin-control-group">
+                <label>메뉴 5 이름 (축하방명록)</label>
+                <input type="text" id="ctrlNavMenu5" value="${menuTexts[4] || '축하방명록'}" style="width: 100%; padding: 6px; border-radius: 4px; border: 1px solid #CBD5E1; font-size: 0.85rem; color: #334155; background-color: #FFFFFF; outline: none; box-sizing: border-box;">
               </div>
             </div>
           </div>
@@ -491,6 +526,24 @@ window.SaeromVisualEditor = (function() {
         document.getElementById('valNavBorderRadius').innerText = e.target.value + 'px';
       });
     }
+
+    const ctrlNavLogoText = document.getElementById('ctrlNavLogoText');
+    if (ctrlNavLogoText) {
+      ctrlNavLogoText.addEventListener('input', (e) => {
+        const logoSpan = document.querySelector('.nav-logo span');
+        if (logoSpan) logoSpan.innerText = e.target.value;
+      });
+    }
+
+    [1, 2, 3, 4, 5].forEach(idx => {
+      const ctrl = document.getElementById(`ctrlNavMenu${idx}`);
+      if (ctrl) {
+        ctrl.addEventListener('input', (e) => {
+          const spans = document.querySelectorAll('.nav-menu a span');
+          if (spans[idx - 1]) spans[idx - 1].innerText = e.target.value;
+        });
+      }
+    });
 
     // --- Accordion 2: Hero Section & Badge/Names ---
     const ctrlSloganShow = document.getElementById('ctrlSloganShow');
