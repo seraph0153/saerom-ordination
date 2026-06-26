@@ -17,7 +17,18 @@ window.SaeromVisualEditor = (function() {
   let uploadedMap = null;
   let uploadedCover = null;
 
-  function init() {
+  function loadLocalConfig() {
+    return new Promise((resolve) => {
+      const script = document.createElement('script');
+      script.src = 'js/config.js';
+      script.onload = () => resolve();
+      script.onerror = () => resolve(); // Gracefully skip if file doesn't exist
+      document.head.appendChild(script);
+    });
+  }
+
+  async function init() {
+    await loadLocalConfig();
     sloganBadge = document.querySelector('.hero-slogan-badge');
     heroCard = document.querySelector('.hero-card-container');
     namesCard = document.querySelector('.hero-officer-names');
@@ -98,7 +109,11 @@ window.SaeromVisualEditor = (function() {
     let allFlipped = document.querySelectorAll('.slide-card-inner.flipped').length === document.querySelectorAll('.slide-card-inner').length;
 
     // Retrieve saved GitHub settings
-    const savedToken = localStorage.getItem('saerom_github_token') || '';
+    let savedToken = localStorage.getItem('saerom_github_token') || '';
+    if (!savedToken && window.SaeromEditorConfig && window.SaeromEditorConfig.token) {
+      savedToken = window.SaeromEditorConfig.token;
+      localStorage.setItem('saerom_github_token', savedToken);
+    }
     const savedUser = localStorage.getItem('saerom_github_user') || 'seraph0153';
     const savedRepo = localStorage.getItem('saerom_github_repo') || 'saerom-ordination';
 
