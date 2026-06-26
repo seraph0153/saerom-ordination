@@ -15,6 +15,7 @@ window.SaeromVisualEditor = (function() {
 
   // Global state for uploaded files
   let uploadedMap = null;
+  let uploadedCover = null;
 
   function init() {
     sloganBadge = document.querySelector('.hero-slogan-badge');
@@ -85,6 +86,8 @@ window.SaeromVisualEditor = (function() {
     // Hero Card initial values
     let cardWidth = heroCard ? parseInt(heroCard.style.width) || 81 : 81;
     let cardMarginTop = heroCard ? parseInt(heroCard.style.marginTop) || 0 : 0;
+    let cardRadius = heroCard ? parseInt(heroCard.style.borderRadius) || 0 : 0;
+    let cardFit = heroCard && heroCard.querySelector('.hero-card-img') ? heroCard.querySelector('.hero-card-img').style.objectFit || 'cover' : 'cover';
 
     // Directions Map initial values
     let mapWidth = directionsMap ? parseInt(directionsMap.style.width) || 100 : 100;
@@ -137,6 +140,10 @@ window.SaeromVisualEditor = (function() {
         <!-- Hero Card Settings -->
         <div>
           <div class="admin-section-title">초청장 카드 설정</div>
+          <div class="admin-control-group" style="margin-bottom: 12px;">
+            <label>메인 이미지 교체 (내 컴퓨터에서 선택)</label>
+            <input type="file" id="ctrlCoverUpload" accept="image/*" style="margin-top: 4px; font-size: 0.75rem; color: #64748B;">
+          </div>
           <div class="admin-control-group">
             <label>가로 폭 (데스크톱 비율) <span class="value-display" id="valCardWidth">${cardWidth}%</span></label>
             <input type="range" class="admin-slider" id="ctrlCardWidth" min="50" max="100" value="${cardWidth}">
@@ -144,6 +151,17 @@ window.SaeromVisualEditor = (function() {
           <div class="admin-control-group">
             <label>카드 상단 위치 <span class="value-display" id="valCardMarginTop">${cardMarginTop}px</span></label>
             <input type="range" class="admin-slider" id="ctrlCardMarginTop" min="-80" max="150" value="${cardMarginTop}">
+          </div>
+          <div class="admin-control-group">
+            <label>카드 둥근 모서리 <span class="value-display" id="valCardRadius">${cardRadius}px</span></label>
+            <input type="range" class="admin-slider" id="ctrlCardRadius" min="0" max="40" value="${cardRadius}">
+          </div>
+          <div class="admin-control-group">
+            <label>이미지 맞춤 방식</label>
+            <select class="admin-select" id="ctrlCardFit" style="width: 100%; padding: 6px; border-radius: 4px; border: 1px solid #CBD5E1; font-size: 0.85rem; color: #334155; background-color: #FFFFFF; outline: none;">
+              <option value="cover" ${cardFit === 'cover' ? 'selected' : ''}>가득 채우기 (Cover)</option>
+              <option value="contain" ${cardFit === 'contain' ? 'selected' : ''}>모두 보이기 (Contain)</option>
+            </select>
           </div>
         </div>
 
@@ -283,6 +301,56 @@ window.SaeromVisualEditor = (function() {
       }
       document.getElementById('valCardMarginTop').innerText = e.target.value + 'px';
     });
+
+    const ctrlCardRadius = document.getElementById('ctrlCardRadius');
+    ctrlCardRadius.addEventListener('input', (e) => {
+      if (heroCard) {
+        heroCard.style.borderRadius = e.target.value + 'px';
+        const img = heroCard.querySelector('img');
+        if (img) img.style.borderRadius = e.target.value + 'px';
+      }
+      document.getElementById('valCardRadius').innerText = e.target.value + 'px';
+    });
+
+    const ctrlCardFit = document.getElementById('ctrlCardFit');
+    if (ctrlCardFit) {
+      ctrlCardFit.addEventListener('change', (e) => {
+        if (heroCard) {
+          const img = heroCard.querySelector('.hero-card-img');
+          if (img) img.style.objectFit = e.target.value;
+        }
+      });
+    }
+
+    const ctrlCoverUpload = document.getElementById('ctrlCoverUpload');
+    if (ctrlCoverUpload) {
+      ctrlCoverUpload.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+          const base64 = event.target.result.split(',')[1];
+          const ext = file.name.split('.').pop().toLowerCase();
+
+          uploadedCover = {
+            name: file.name,
+            ext: ext,
+            contentType: file.type,
+            base64: base64,
+            dataUrl: event.target.result
+          };
+
+          // Update preview in the DOM instantly
+          const coverImg = heroCard.querySelector('.hero-card-img');
+          if (coverImg) {
+            coverImg.src = event.target.result;
+          }
+          showEditorToast('메인 이미지가 임시 교체되었습니다. [깃허브 바로 배포] 시 최종 적용됩니다.', 'fa-solid fa-image');
+        };
+        reader.readAsDataURL(file);
+      });
+    }
 
     // --- Names Card Listeners ---
     const ctrlNamesShow = document.getElementById('ctrlNamesShow');
@@ -425,6 +493,18 @@ window.SaeromVisualEditor = (function() {
         mapImg.setAttribute('src', `assets/directions_card_uploaded.${uploadedMap.ext}`);
       }
     }
+
+    // Store original cover src for restoration if uploadedCover is present
+    let originalCoverSrc = null;
+    let coverImg = null;
+    if (uploadedCover && heroCard) {
+      coverImg = heroCard.querySelector('.hero-card-img');
+      if (coverImg) {
+        originalCoverSrc = coverImg.getAttribute('src');
+        // Point to the relative filename that will be committed to GitHub
+        coverImg.setAttribute('src', `assets/hero_card_uploaded.${uploadedCover.ext}`);
+      }
+    }
     
     // Remove temporary tags
     const triggerBtn = document.getElementById('adminEditTrigger');
@@ -460,6 +540,11 @@ window.SaeromVisualEditor = (function() {
     // Restore image preview src back to dataUrl (Base64) locally
     if (mapImg && originalMapSrc) {
       mapImg.setAttribute('src', originalMapSrc);
+    }
+
+    // Restore cover preview src back to dataUrl (Base64) locally
+    if (coverImg && originalCoverSrc) {
+      coverImg.setAttribute('src', originalCoverSrc);
     }
     
     // Restore trigger button in DOM
@@ -519,7 +604,48 @@ window.SaeromVisualEditor = (function() {
     btnPublish.disabled = true;
 
     try {
-      // Step 1: Upload image file first if uploadedMap exists
+      // Step 1: Upload cover image first if uploadedCover exists
+      if (uploadedCover) {
+        btnPublish.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 메인 이미지 업로드 중...';
+        
+        const imgPath = `assets/hero_card_uploaded.${uploadedCover.ext}`;
+        const imgUrl = `https://api.github.com/repos/${user}/${repo}/contents/${imgPath}`;
+        
+        let imgSha = null;
+        const imgCheckRes = await fetch(imgUrl, {
+          headers: {
+            'Authorization': `token ${token}`,
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        });
+        
+        if (imgCheckRes.ok) {
+          const imgData = await imgCheckRes.json();
+          imgSha = imgData.sha;
+        }
+
+        const imgPutRes = await fetch(imgUrl, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `token ${token}`,
+            'Accept': 'application/vnd.github.v3+json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            message: 'media: upload new main cover image via SaeromVisualEditor',
+            content: uploadedCover.base64,
+            sha: imgSha || undefined,
+            branch: 'main'
+          })
+        });
+
+        if (!imgPutRes.ok) {
+          const imgErr = await imgPutRes.json();
+          throw new Error('메인 이미지 업로드 실패: ' + (imgErr.message || '알 수 없는 오류'));
+        }
+      }
+
+      // Step 2: Upload directions image first if uploadedMap exists
       if (uploadedMap) {
         btnPublish.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 약도 이미지 업로드 중...';
         
