@@ -63,12 +63,12 @@
     <!-- Ordained Officers Names (HTML Text Overlay) -->
     <div class="hero-officer-names fade-in-up delay-3">
       <div class="officers-group">
-        <span class="role-badge blue">안수집사</span>
-        <span class="names-list">안민희</span>
+        <span class="role-badge blue editable">안수집사</span>
+        <span class="names-list editable">안민희</span>
       </div>
       <div class="officers-group">
-        <span class="role-badge orange">권사</span>
-        <span class="names-list">이경희 &nbsp;&middot;&nbsp; 김태연 &nbsp;&middot;&nbsp; 조영아</span>
+        <span class="role-badge orange editable">권사</span>
+        <span class="names-list editable">이경희 &nbsp;&middot;&nbsp; 김태연 &nbsp;&middot;&nbsp; 조영아</span>
       </div>
     </div>
 
@@ -86,19 +86,19 @@
     <div class="container">
       <div class="card intro-card reveal-on-scroll">
         <div class="bible-verse">
-          <p class="verse-text">“사랑하는 자여 네 영혼이 잘됨 같이<br>네가 범사에 잘 되고 강건하기를 내가 간구하노라”</p>
-          <p class="verse-ref">요한3서 1장 2절</p>
+          <p class="verse-text editable">“사랑하는 자여 네 영혼이 잘됨 같이<br>네가 범사에 잘 되고 강건하기를 내가 간구하노라”</p>
+          <p class="verse-ref editable">요한3서 1장 2절</p>
         </div>
         
-        <h2 class="section-title text-center">초청의 글</h2>
+        <h2 class="section-title text-center editable">초청의 글</h2>
         <div class="intro-letter">
-          <p>하나님의 크신 은혜와 평강이 귀 댁에 가득하시기를 기원합니다.</p>
-          <p>날마다 더 새로워지는 새롬교회가 주님의 크신 인도하심 속에 설립 기념을 맞이하고, 몸 된 교회를 더욱 신실하게 섬길 새로운 직분자를 세우는 임직감사예배를 하나님께 드리게 되었습니다.</p>
-          <p>오셔서 평생동행의 약속 위에 첫걸음을 딛는 일꾼들을 축복해 주시고, 감사의 자리를 은혜와 기쁨으로 함께 빛내어 주시기를 소망합니다.</p>
+          <p class="editable">하나님의 크신 은혜와 평강이 귀 댁에 가득하시기를 기원합니다.</p>
+          <p class="editable">날마다 더 새로워지는 새롬교회가 주님의 크신 인도하심 속에 설립 기념을 맞이하고, 몸 된 교회를 더욱 신실하게 섬길 새로운 직분자를 세우는 임직감사예배를 하나님께 드리게 되었습니다.</p>
+          <p class="editable">오셔서 평생동행의 약속 위에 첫걸음을 딛는 일꾼들을 축복해 주시고, 감사의 자리를 은혜와 기쁨으로 함께 빛내어 주시기를 소망합니다.</p>
           
           <div class="pastor-signature">
-            <span class="church-name">대한예수교장로회 새롬교회</span>
-            <span class="pastor-name">위임목사 <strong>홍성철</strong></span>
+            <span class="church-name editable">대한예수교장로회 새롬교회</span>
+            <span class="pastor-name editable">위임목사 <strong>홍성철</strong></span>
           </div>
         </div>
       </div>
@@ -311,35 +311,35 @@
       <div class="details-layout">
         <!-- Event Details Card -->
         <div class="card details-card reveal-on-scroll">
-          <h2 class="section-title">예배 및 안내</h2>
+          <h2 class="section-title editable">예배 및 안내</h2>
           <ul class="details-list">
             <li>
               <div class="icon-box"><i class="fa-regular fa-calendar-days"></i></div>
               <div class="detail-text">
-                <h4>일시</h4>
-                <p>2026년 7월 5일 (주일) 오후 2:00</p>
+                <h4 class="editable">일시</h4>
+                <p class="editable">2026년 7월 5일 (주일) 오후 2:00</p>
               </div>
             </li>
             <li>
               <div class="icon-box"><i class="fa-solid fa-church"></i></div>
               <div class="detail-text">
-                <h4>장소</h4>
-                <p>새롬교회 2층 본당</p>
+                <h4 class="editable">장소</h4>
+                <p class="editable">새롬교회 2층 본당</p>
               </div>
             </li>
             <li>
               <div class="icon-box"><i class="fa-solid fa-user-tie"></i></div>
               <div class="detail-text">
-                <h4>위임목사</h4>
-                <p>홍성철 목사</p>
+                <h4 class="editable">위임목사</h4>
+                <p class="editable">홍성철 목사</p>
               </div>
             </li>
             <li>
               <div class="icon-box"><i class="fa-solid fa-people-group"></i></div>
               <div class="detail-text">
-                <h4>임직 대상자</h4>
-                <p><strong>안수집사</strong>: 안민희</p>
-                <p><strong>권사</strong>: 이경희, 김태연, 조영아</p>
+                <h4 class="editable">임직 대상자</h4>
+                <p class="editable"><strong>안수집사</strong>: 안민희</p>
+                <p class="editable"><strong>권사</strong>: 이경희, 김태연, 조영아</p>
               </div>
             </li>
           </ul>
@@ -506,6 +506,11 @@
 
   <!-- Toast Notification Container -->
   <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Admin Edit Trigger (Floating Gear Icon) -->
+  <button class="admin-edit-trigger" id="adminEditTrigger" aria-label="관리자 모드">
+    <i class="fa-solid fa-gear"></i>
+  </button>
 
   <!-- JS Code Scripts -->
   <script src="js/main.js"></script>

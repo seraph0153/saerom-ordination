@@ -570,4 +570,38 @@ document.addEventListener('DOMContentLoaded', () => {
       showToast('카카오톡 SDK 연동 대기중. 초청장 주소가 복사되었습니다.', 'fa-solid fa-link');
     });
   }
+
+  // --- 9. Admin Mode Password Prompt & Editor Loader ---
+  const adminBtn = document.getElementById('adminEditTrigger');
+  if (adminBtn) {
+    adminBtn.addEventListener('click', () => {
+      // If editor script is already loaded, just toggle the panel
+      if (window.SaeromVisualEditor) {
+        window.SaeromVisualEditor.togglePanel();
+        return;
+      }
+      
+      const inputPass = prompt('관리자 비밀번호를 입력해 주세요 (초기 비밀번호: 0153):');
+      if (inputPass === null) return; // Cancel
+      
+      if (inputPass === '0153' || inputPass === 'admin') {
+        showToast('관리자 인증 성공! 편집 모드를 로드합니다.', 'fa-solid fa-user-shield');
+        
+        // Dynamically load editor.js
+        const editorScript = document.createElement('script');
+        editorScript.src = 'js/editor.js';
+        editorScript.onload = () => {
+          if (window.SaeromVisualEditor) {
+            window.SaeromVisualEditor.init();
+          }
+        };
+        editorScript.onerror = () => {
+          showToast('편집기 로드에 실패했습니다. js/editor.js 파일을 확인하세요.', 'fa-solid fa-circle-exclamation');
+        };
+        document.body.appendChild(editorScript);
+      } else {
+        showToast('비밀번호가 올바르지 않습니다.', 'fa-solid fa-lock');
+      }
+    });
+  }
 });
