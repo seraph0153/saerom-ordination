@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>새롬교회 임직감사예배 초청장</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="물가로, 말씀으로, 생명으로 날마다 더 새로워지는 새롬교회 임직감사예배에 소중한 당신을 초대합니다. 2026년 7월 5일 주일 오후 2시.">
+  <meta property="og:title" content="새롬교회 임직감사예배 초청장">
+  <meta property="og:description" content="새롬교회 새로운 일꾼들을 세우는 은혜의 자리에 당신을 초대합니다. 2026.7.5(주일) 오후 2시">
+  <meta property="og:image" content="assets/invitation_card.jpg">
+  <meta property="og:type" content="website">
+  
+  <!-- Fonts -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Icon Libraries -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Background Music Element (Optional, elegant control) -->
+  <div class="bg-music-container" id="bgMusicContainer" style="display:none;">
+    <button class="music-toggle-btn" id="musicToggleBtn" aria-label="음악 재생/정지">
+      <i class="fa-solid fa-volume-xmark"></i>
+    </button>
+  </div>
+
+  <!-- Glassmorphism Floating Navigation -->
+  <nav class="floating-nav" id="floatingNav">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <img src="assets/logo.png" alt="새롬교회 로고" class="nav-logo-img">
+        <span>새롬교회</span>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="#introduction"><i class="fa-regular fa-envelope"></i> <span>초청</span></a></li>
+        <li><a href="#officers"><i class="fa-regular fa-user"></i> <span>임직자</span></a></li>
+        <li><a href="#details"><i class="fa-regular fa-calendar-check"></i> <span>예배안내</span></a></li>
+        <li><a href="#directions"><i class="fa-solid fa-map-location-dot"></i> <span>오시는길</span></a></li>
+        <li><a href="#guestbook"><i class="fa-regular fa-comment-dots"></i> <span>축하방명록</span></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero-section" id="hero">
+    <!-- Main Card Body -->
+    <div class="hero-card-container fade-in-up delay-2">
+      <img src="assets/hero_card.jpg" alt="새롬교회 임직감사예배 초청장" class="hero-card-img">
+    </div>
+
+    <!-- Scroll down indicator -->
+    <div class="hero-scroll-indicator fade-in-up delay-4">
+      <span>아래로 스크롤</span>
+      <div class="arrow-bounce">
+        <i class="fa-solid fa-chevron-down text-muted"></i>
+      </div>
+    </div>
+  </header>
+
+<!-- Introduction Section -->
+  <section class="intro-section" id="introduction">
+    <div class="container">
+      <div class="card intro-card reveal-on-scroll">
+        <div class="bible-verse">
+          <p class="verse-text">“사랑하는 자여 네 영혼이 잘됨 같이<br>네가 범사에 잘 되고 강건하기를 내가 간구하노라”</p>
+          <p class="verse-ref">요한3서 1장 2절</p>
+        </div>
+        
+        <h2 class="section-title text-center">초청의 글</h2>
+        <div class="intro-letter">
+          <p>하나님의 크신 은혜와 평강이 귀 댁에 가득하시기를 기원합니다.</p>
+          <p>날마다 더 새로워지는 새롬교회가 주님의 크신 인도하심 속에 설립 기념을 맞이하고, 몸 된 교회를 더욱 신실하게 섬길 새로운 직분자를 세우는 임직감사예배를 하나님께 드리게 되었습니다.</p>
+          <p>오셔서 평생동행의 약속 위에 첫걸음을 딛는 일꾼들을 축복해 주시고, 감사의 자리를 은혜와 기쁨으로 함께 빛내어 주시기를 소망합니다.</p>
+          
+          <div class="pastor-signature">
+            <span class="church-name">대한예수교장로회 새롬교회</span>
+            <span class="pastor-name">위임목사 <strong>홍성철</strong> <span>합장</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Officers Section -->
+  <section class="officers-section" id="officers">
+    <div class="container">
+      <h2 class="section-title text-center reveal-on-scroll">임직자를 소개합니다</h2>
+      <p class="section-subtitle text-center reveal-on-scroll">좌우 화살표를 누르거나 화면을 밀어 임직자의 다짐과 기도제목을 보실 수 있습니다.</p>
+      
+      <div class="officers-slider-wrapper reveal-on-scroll">
+        <button class="slider-arrow prev-btn" id="prevOfficerBtn" aria-label="이전 임직자"><i class="fa-solid fa-chevron-left"></i></button>
+        
+        <div class="officers-slider">
+          <div class="officers-slider-track" id="officerSliderTrack">
+            <!-- Slide 1: 안수집사 안민희 (Blue Theme) -->
+            <div class="officer-slide theme-blue active" data-index="0">
+              <div class="slide-card-inner">
+                <!-- Front: Image Centered -->
+                <div class="slide-card-front">
+                  <img src="assets/officer_ahn_min_hee.jpg" alt="안수집사 안민희" class="slide-officer-img">
+                  <div class="card-front-overlay">
+                    <button class="btn-flip-trigger" aria-label="소개글 보기">
+                      소개글 보기 <i class="fa-solid fa-rotate"></i>
+                    </button>
+                  </div>
+                </div>
+                <!-- Back: Structured Text -->
+                <div class="slide-card-back">
+                  <div class="slide-info-col">
+                    <div class="back-header">
+                      <span class="officer-role"><i class="fa-solid fa-shield-halved"></i> 안수집사</span>
+                      <button class="btn-flip-back" aria-label="사진 보기"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                    <h3 class="officer-name">안민희</h3>
+                    <div class="slide-divider"></div>
+                    
+                    <div class="slide-section">
+                      <h5 class="slide-section-sub"><i class="fa-solid fa-quote-left"></i> 평생동행의 길로 나아가기 위한 다짐</h5>
+                      <p class="slide-statement">“그리스도의 겸손한 일꾼으로 평생 동행하겠습니다.”<br><br>새롬교회의 든든한 몸 된 성전 지기로 부름 받아 오직 예수 그리스도를 주로 고백하며, 겸손히 섬기고 묵묵히 헌신하는 충성된 집사가 되겠습니다. 기쁨과 평화로 주님의 자녀들과 늘 동행하겠습니다.</p>
+                    </div>
+                    
+                    <div class="slide-section">
+                      <h5 class="slide-section-sub"><i class="fa-regular fa-comment-check"></i> 임직자 감사 기도제목</h5>
+                      <ul class="slide-prayer-list">
+                        <li>오직 하나님의 나라와 의를 먼저 구하며 기도의 무릎으로 먼저 섬기는 삶을 살도록</li>
+                        <li>온 가정이 신앙으로 단단히 결속되고 새롬교회의 평화와 부흥의 통로로 쓰임 받도록</li>
+                        <li>매일 성령 충만하여 직장의 일터와 만나는 모든 자들에게 축복의 증인이 되도록</li>
+                      </ul>
+                    </div>
+                    
+                    <button class="btn btn-primary slide-action-btn" data-target="안민희">
+                      <i class="fa-solid fa-pen"></i> 안민희 집사님께 축하 남기기
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 2: 권사 이경희 (Orange Theme) -->
+            <div class="officer-slide theme-orange" data-index="1">
+              <div class="slide-card-inner">
+                <!-- Front: Image Centered -->
+                <div class="slide-card-front">
+                  <img src="assets/officer_lee_kyung_hee.jpg" alt="권사 이경희" class="slide-officer-img">
+                  <div class="card-front-overlay">
+                    <button class="btn-flip-trigger" aria-label="소개글 보기">
+                      소개글 보기 <i class="fa-solid fa-rotate"></i>
+                    </button>
+                  </div>
+                </div>
+                <!-- Back: Structured Text -->
+                <div class="slide-card-back">
+                  <div class="slide-info-col">
+                    <div class="back-header">
+                      <span class="officer-role"><i class="fa-solid fa-heart"></i> 권사</span>
+                      <button class="btn-flip-back" aria-label="사진 보기"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                    <h3 class="officer-name">이경희</h3>
+                    <div class="slide-divider"></div>
+                    
+                    <div class="slide-section">
+                      <h5 class="slide-section-sub"><i class="fa-solid fa-quote-left"></i> 평생동행의 길로 나아가기 위한 다짐</h5>
+                      <p class="slide-statement">“지도와 사랑으로 성도들을 따뜻하게 섬기겠습니다.”<br><br>주의 몸 된 제단 앞에 엎드려 사랑의 은혜를 고백합니다. 매 순간 기도의 등불을 환히 밝히고 낙망한 자들에게 평안과 기쁨의 마중물이 되겠습니다. 기도의 심장을 지켜 교회의 화평에 앞장서겠습니다.</p>
+                    </div>
+                    
+                    <div class="slide-section">
+                      <h5 class="slide-section-sub"><i class="fa-regular fa-comment-check"></i> 임직자 감사 기도제목</h5>
+                      <ul class="slide-prayer-list">
+                        <li>교회의 연약한 자들을 먼저 보듬고 사랑을 실천하며 평생동행의 약속을 완성하게 하소서</li>
+                        <li>기도의 자리를 신실하게 지켜 지치지 않는 성령의 은혜로 영육이 날마다 충만하도록</li>
+                        <li>세워진 자녀들이 믿음의 명문 대를 이어 하나님께 귀히 쓰임 받는 가정 되도록</li>
+                      </ul>
+                    </div>
+                    
+                    <button class="btn btn-primary slide-action-btn" data-target="이경희">
+                      <i class="fa-solid fa-pen"></i> 이경희 권사님께 축하 남기기
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 3: 권사 김태연 (Orange Theme) -->
+            <div class="officer-slide theme-orange" data-index="2">
+              <div class="slide-card-inner">
+                <!-- Front: Image Centered -->
+                <div class="slide-card-front">
+                  <img src="assets/officer_kim_tae_yeon.jpg" alt="권사 김태연" class="slide-officer-img">
+                  <div class="card-front-overlay">
+                    <button class="btn-flip-trigger" aria-label="소개글 보기">
+                      소개글 보기 <i class="fa-solid fa-rotate"></i>
+                    </button>
+                  </div>
+                </div>
+                <!-- Back: Structured Text -->
+                <div class="slide-card-back">
+                  <div class="slide-info-col">
+                    <div class="back-header">
+                      <span class="officer-role"><i class="fa-solid fa-heart"></i> 권사</span>
+                      <button class="btn-flip-back" aria-label="사진 보기"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                    <h3 class="officer-name">김태연</h3>
+                    <div class="slide-divider"></div>
+                    
+                    <div class="slide-section">
+                      <h5 class="slide-section-sub"><i class="fa-solid fa-quote-left"></i> 평생동행의 길로 나아가기 위한 다짐</h5>
+                      <p class="slide-statement">“말씀의 물가로 날마다 나아가 순종의 길을 걷겠습니다.”<br><br>하나님의 일꾼으로 부름 받은 은혜에 감사합니다. 저의 생각과 의지를 버리고 주님의 말씀 앞에 온전히 순종하여 성도들과 한마음으로 교회를 굳게 세워가겠습니다. 기쁨의 씨앗을 뿌려 아름다운 열매를 거두겠습니다.</p>
+                    </div>
+                    
+                    <div class="slide-section">
+                      <h5 class="slide-section-sub"><i class="fa-regular fa-comment-check"></i> 임직자 감사 기도제목</h5>
+                      <ul class="slide-prayer-list">
+                        <li>하나님 나라와 의를 먼저 구하고 범사에 순종하는 삶을 살도록</li>
+                        <li>기도의 자리를 굳건히 지켜 영혼들을 살리고 품는 복의 통로가 되도록</li>
+                        <li>가정이 늘 은혜와 말씀으로 견고해지고 평화가 넘치도록</li>
+                      </ul>
+                    </div>
+                    
+                    <button class="btn btn-primary slide-action-btn" data-target="김태연">
+                      <i class="fa-solid fa-pen"></i> 김태연 권사님께 축하 남기기
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 4: 권사 조영아 (Orange Theme) -->
+            <div class="officer-slide theme-orange" data-index="3">
+              <div class="slide-card-inner">
+                <!-- Front: Image Centered -->
+                <div class="slide-card-front">
+                  <img src="assets/officer_jo_young_ah.jpg" alt="권사 조영아" class="slide-officer-img">
+                  <div class="card-front-overlay">
+                    <button class="btn-flip-trigger" aria-label="소개글 보기">
+                      소개글 보기 <i class="fa-solid fa-rotate"></i>
+                    </button>
+                  </div>
+                </div>
+                <!-- Back: Structured Text -->
+                <div class="slide-card-back">
+                  <div class="slide-info-col">
+                    <div class="back-header">
+                      <span class="officer-role"><i class="fa-solid fa-heart"></i> 권사</span>
+                      <button class="btn-flip-back" aria-label="사진 보기"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                    <h3 class="officer-name">조영아</h3>
+                    <div class="slide-divider"></div>
+                    
+                    <div class="slide-section">
+                      <h5 class="slide-section-sub"><i class="fa-solid fa-quote-left"></i> 평생동행의 길로 나아가기 위한 다짐</h5>
+                      <p class="slide-statement">“교회의 화평과 기쁨을 위해 헌신하는 일꾼이 되겠습니다.”<br><br>예수님의 섬김을 삶의 표대로 삼고 성도들 간의 사랑과 신뢰를 이어주는 가교 역할을 묵묵히 감당하겠습니다. 교회의 덕을 세우고, 늘 감사와 웃음으로 사명을 즐거이 감당하는 기도의 권사가 되겠습니다.</p>
+                    </div>
+                    
+                    <div class="slide-section">
+                      <h5 class="slide-section-sub"><i class="fa-regular fa-comment-check"></i> 임직자 감사 기도제목</h5>
+                      <ul class="slide-prayer-list">
+                        <li>성령의 아홉 가지 열매를 맺어가며 예수님의 인격을 닮은 권사가 되도록</li>
+                        <li>교회의 연합과 화평을 위해 눈물로 씨를 뿌리는 기도의 일꾼이 되도록</li>
+                        <li>사랑하는 자녀와 가정의 삶 가운데 오직 하나님만이 주인 되시도록</li>
+                      </ul>
+                    </div>
+                    
+                    <button class="btn btn-primary slide-action-btn" data-target="조영아">
+                      <i class="fa-solid fa-pen"></i> 조영아 권사님께 축하 남기기
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div></div>
+        </div>
+
+        <button class="slider-arrow next-btn" id="nextOfficerBtn" aria-label="다음 임직자"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+
+      <div class="slider-dots" id="sliderDots">
+        <span class="dot active" data-index="0"></span>
+        <span class="dot" data-index="1"></span>
+        <span class="dot" data-index="2"></span>
+        <span class="dot" data-index="3"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Worship Info & Countdown Section -->
+  <section class="details-section" id="details">
+    <div class="container">
+      <div class="details-layout">
+        <!-- Event Details Card -->
+        <div class="card details-card reveal-on-scroll">
+          <h2 class="section-title">예배 및 안내</h2>
+          <ul class="details-list">
+            <li>
+              <div class="icon-box"><i class="fa-regular fa-calendar-days"></i></div>
+              <div class="detail-text">
+                <h4>일시</h4>
+                <p>2026년 7월 5일 (주일) 오후 2:00</p>
+              </div>
+            </li>
+            <li>
+              <div class="icon-box"><i class="fa-solid fa-church"></i></div>
+              <div class="detail-text">
+                <h4>장소</h4>
+                <p>새롬교회 2층 본당</p>
+              </div>
+            </li>
+            <li>
+              <div class="icon-box"><i class="fa-solid fa-user-tie"></i></div>
+              <div class="detail-text">
+                <h4>위임목사</h4>
+                <p>홍성철 목사</p>
+              </div>
+            </li>
+            <li>
+              <div class="icon-box"><i class="fa-solid fa-people-group"></i></div>
+              <div class="detail-text">
+                <h4>임직 대상자</h4>
+                <p><strong>안수집사</strong>: 안민희</p>
+                <p><strong>권사</strong>: 이경희, 김태연, 조영아</p>
+              </div>
+            </li>
+          </ul>
+
+          <div class="calendar-buttons">
+            <button class="btn btn-primary" id="googleCalendarBtn">
+              <i class="fa-brands fa-google"></i> 구글 캘린더에 일정 등록
+            </button>
+            <button class="btn btn-secondary" id="icsCalendarBtn">
+              <i class="fa-regular fa-calendar-plus"></i> 애플/아웃룩 일정 등록 (.ics)
+            </button>
+          </div>
+        </div>
+
+        <!-- Countdown Card -->
+        <div class="card countdown-card reveal-on-scroll">
+          <h3 class="countdown-heading">임직식까지 남은 시간</h3>
+          <div class="countdown-timer" id="countdownTimer">
+            <div class="time-block">
+              <span class="number" id="days">00</span>
+              <span class="label">일</span>
+            </div>
+            <div class="time-block">
+              <span class="number" id="hours">00</span>
+              <span class="label">시간</span>
+            </div>
+            <div class="time-block">
+              <span class="number" id="minutes">00</span>
+              <span class="label">분</span>
+            </div>
+            <div class="time-block">
+              <span class="number" id="seconds">00</span>
+              <span class="label">초</span>
+            </div>
+          </div>
+          <div class="countdown-footer">
+            <p id="countdownMessage">소중한 기도로 함께해 주세요.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Directions Section -->
+  <section class="directions-section" id="directions">
+    <div class="container">
+      <h2 class="section-title text-center reveal-on-scroll">오시는 길</h2>
+      <div class="directions-wrapper reveal-on-scroll">
+        <!-- Directions Image Card -->
+        <div class="directions-card-container">
+          <img src="assets/directions_card.jpg" alt="새롬교회 오시는 길 약도" class="directions-card-img">
+        </div>
+        
+        <!-- Directions Action Buttons -->
+        <div class="directions-buttons">
+          <a href="https://map.kakao.com/?q=경기도 군포시 군포로 476번길 16" target="_blank" class="btn-map kakao-map">
+            <i class="fa-solid fa-location-arrow"></i> 카카오맵 바로가기
+          </a>
+          <a href="https://map.naver.com/v5/search/경기도%20군포시%20군포로%20476번길%2016" target="_blank" class="btn-map naver-map">
+            <i class="fa-solid fa-location-arrow"></i> 네이버 지도 바로가기
+          </a>
+          <button class="btn-map copy-address" id="copyAddressBtn">
+            <i class="fa-regular fa-copy"></i> 주소 복사하기
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guestbook Section -->
+  <section class="guestbook-section" id="guestbook">
+    <div class="container">
+      <h2 class="section-title text-center reveal-on-scroll">축하 방명록</h2>
+      <p class="section-subtitle text-center reveal-on-scroll">새로운 임직자들에게 사랑과 축하의 메시지를 남겨주세요.</p>
+      
+      <div class="guestbook-layout">
+        <!-- Message Write Form -->
+        <div class="card guestbook-form-card reveal-on-scroll">
+          <form id="commentForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="commentAuthor">작성자</label>
+                <input type="text" id="commentAuthor" placeholder="성함을 입력하세요" required maxlength="10">
+              </div>
+              <div class="form-group">
+                <label for="commentPassword">비밀번호</label>
+                <input type="password" id="commentPassword" placeholder="수정/삭제용 비밀번호" required maxlength="8">
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label>축하 스티커 선택</label>
+              <div class="sticker-selector" id="stickerSelector">
+                <div class="sticker-opt active" data-sticker="🙏">🙏 축하합니다</div>
+                <div class="sticker-opt" data-sticker="✨">✨ 축복합니다</div>
+                <div class="sticker-opt" data-sticker="🌱">🌱 응원합니다</div>
+                <div class="sticker-opt" data-sticker="💖">💖 평생동행</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="commentText">메시지</label>
+              <textarea id="commentText" rows="4" placeholder="임직자분들에게 격려와 하나님의 축복 메시지를 남겨주세요." required maxlength="200"></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-block">
+              <i class="fa-regular fa-paper-plane"></i> 축하 메시지 등록하기
+            </button>
+          </form>
+        </div>
+
+        <!-- Message List -->
+        <div class="guestbook-list-container reveal-on-scroll">
+          <div class="guestbook-stats">
+            <span>등록된 메시지 <strong id="commentCount">0</strong>개</span>
+          </div>
+          <div class="comment-list" id="commentList">
+            <!-- Messages rendered dynamically via JS -->
+            <div class="empty-list" id="emptyList">
+              <i class="fa-regular fa-comments"></i>
+              <p>첫 번째 축하 메시지를 남겨주세요!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Share & Utility Section -->
+  <footer class="footer">
+    <div class="container text-center">
+      <div class="footer-share-box reveal-on-scroll">
+        <h3>기쁜 소식을 널리 공유해 주세요</h3>
+        <div class="share-buttons">
+          <button class="btn-share share-kakao" id="kakaoShareBtn" aria-label="카카오톡 공유">
+            <img src="https://developers.kakao.com/assets/img/about/logos/kakaotalk/kakaotalk_sharing_btn_medium.png" alt="카카오톡" class="share-icon-img">
+            <span>카카오톡 공유</span>
+          </button>
+          <button class="btn-share share-link" id="copyLinkBtn">
+            <i class="fa-solid fa-link"></i>
+            <span>초청장 링크 복사</span>
+          </button>
+          <button class="btn-share share-system" id="webShareBtn" style="display:none;">
+            <i class="fa-solid fa-share-nodes"></i>
+            <span>공유하기</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="footer-logo">
+        <img src="assets/logo.png" alt="새롬교회 로고" class="footer-logo-img">
+        <span>대한예수교장로회 새롬교회</span>
+      </div>
+      
+      <p class="footer-info">
+        위임목사 홍성철 | 경기도 군포시 군포로 476번길 16<br>
+        대표전화: 031-394-9183 | 팩스: 031-391-8161
+      </p>
+      
+      <p class="copyright">&copy; 2026 새롬교회. All Rights Reserved. Designed by Antigravity.</p>
+    </div>
+  </footer>
+
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- JS Code Scripts -->
+  <script src="js/main.js"></script>
+</body>
+</html>

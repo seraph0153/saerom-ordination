@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#073a78"/>
+      <stop offset="0.55" stop-color="#003d86"/>
+      <stop offset="1" stop-color="#022d69"/>
+    </linearGradient>
+    <linearGradient id="lav" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#b9a1df"/>
+      <stop offset="1" stop-color="#d2b4f1"/>
+    </linearGradient>
+    <linearGradient id="red" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ff7977"/>
+      <stop offset="1" stop-color="#ef5e62"/>
+    </linearGradient>
+    <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c9df8f"/>
+      <stop offset="1" stop-color="#7dbd76"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000" flood-opacity="0.18"/>
+    </filter>
+    <style>
+      .ko { font-family: 'Noto Sans KR','Apple SD Gothic Neo','Malgun Gothic',Arial,sans-serif; font-weight: 900; letter-spacing: -8px; }
+      .comma { font-weight: 800; letter-spacing: -2px; }
+    </style>
+  </defs>
+
+  <!-- solid rounded-square background -->
+  <rect x="44" y="44" width="936" height="936" rx="72" fill="url(#bg)" filter="url(#softShadow)"/>
+
+  <!-- slogan text -->
+  <g class="ko" font-size="118">
+    <text x="124" y="330" fill="#ffffff">물가로<tspan class="comma" dx="8">,</tspan></text>
+    <text x="124" y="505" fill="url(#lav)">말씀으로<tspan class="comma" dx="8">,</tspan></text>
+    <text x="124" y="680" fill="url(#red)">생명으로<tspan class="comma" dx="8">..</tspan></text>
+  </g>
+
+  <!-- cross -->
+  <g fill="#ffffff">
+    <rect x="728" y="214" width="42" height="454" rx="2"/>
+    <rect x="648" y="300" width="202" height="42" rx="2"/>
+  </g>
+
+  <!-- river/path: white outer and blue inner cut-like shape -->
+  <path d="M316 980 C350 855 478 766 617 694 C693 654 704 616 641 584 C717 576 804 597 858 659 C770 687 708 740 720 824 C727 880 764 927 826 980 Z" fill="#ffffff"/>
+  <path d="M636 980 C614 893 625 825 682 760 C735 701 804 677 887 655 L908 980 Z" fill="#ffffff"/>
+  <path d="M610 980 C583 872 611 781 696 707 C754 656 820 629 908 610 L908 980 Z" fill="#064282"/>
+
+  <!-- plant base and leaves -->
+  <path d="M832 592 C840 500 889 409 954 358 C970 462 926 558 832 592 Z" fill="url(#leaf)"/>
+  <path d="M770 594 C779 536 820 499 868 488 C866 555 829 594 770 594 Z" fill="url(#leaf)"/>
+  <path d="M833 592 C858 510 904 442 943 383" fill="none" stroke="#315c4d" stroke-width="7" stroke-linecap="round" opacity="0.45"/>
+  <path d="M772 592 C805 556 834 529 860 504" fill="none" stroke="#315c4d" stroke-width="6" stroke-linecap="round" opacity="0.45"/>
+</svg>
