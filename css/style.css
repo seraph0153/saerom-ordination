@@ -1201,22 +1201,7 @@ section {
 }
 
 
-/* --- Guestbook Section --- */
-.guestbook-section {
-  padding: var(--guestbook-section-padding, 100px) 0;
-  background-color: #FFFFFF;
-}
 
-.guestbook-layout {
-  display: flex;
-  flex-direction: column;
-  gap: var(--guestbook-layout-gap, 40px);
-  margin-top: 40px;
-}
-
-.guestbook-form-card {
-  width: 100%;
-}
 
 .form-group {
   margin-bottom: 20px;
@@ -1259,165 +1244,7 @@ textarea:focus {
   box-shadow: 0 0 0 3px rgba(14, 58, 130, 0.08);
 }
 
-.sticker-selector {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
 
-.sticker-opt {
-  padding: 8px 14px;
-  border-radius: 20px;
-  border: 1px solid var(--border-color);
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: #475569;
-  cursor: pointer;
-  background-color: #FFFFFF;
-  transition: all 0.2s ease;
-}
-
-.sticker-opt:hover {
-  background-color: #F1F5F9;
-}
-
-.sticker-opt.active {
-  background-color: var(--primary-navy);
-  color: var(--text-light);
-  border-color: var(--primary-navy);
-}
-
-.guestbook-list-container {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.guestbook-stats {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  font-weight: 600;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 8px;
-  border-bottom: 2px solid var(--border-color);
-}
-
-.comment-list {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  max-height: 550px;
-  overflow-y: auto;
-  padding-right: 8px;
-}
-
-.comment-list::-webkit-scrollbar {
-  width: 6px;
-}
-
-.comment-list::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.comment-list::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
-  border-radius: 3px;
-}
-
-.comment-list::-webkit-scrollbar-thumb:hover {
-  background: #94A3B8;
-}
-
-.empty-list {
-  text-align: center;
-  padding: 60px 20px;
-  color: var(--text-muted);
-}
-
-.empty-list i {
-  font-size: 3rem;
-  margin-bottom: 12px;
-  opacity: 0.3;
-}
-
-.comment-bubble {
-  background-color: var(--bg-light);
-  border: 1px solid var(--border-color);
-  border-radius: 16px;
-  padding: 20px;
-  position: relative;
-  animation: slideInComment 0.4s ease-out;
-}
-
-@keyframes slideInComment {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.comment-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
-}
-
-.comment-author-box {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.comment-sticker {
-  font-size: 0.8rem;
-  font-weight: 700;
-  padding: 2px 8px;
-  border-radius: 12px;
-}
-
-.sticker-pr { background-color: rgba(14, 58, 130, 0.1); color: var(--primary-navy); }
-.sticker-bl { background-color: rgba(44, 168, 255, 0.1); color: var(--accent-blue-dark); }
-.sticker-sp { background-color: rgba(242, 110, 34, 0.1); color: var(--accent-orange-dark); }
-.sticker-pk { background-color: #FFEAEF; color: #EA3568; }
-
-.comment-author {
-  font-weight: 700;
-  font-size: 0.95rem;
-  color: var(--primary-navy-dark);
-}
-
-.comment-actions {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
-
-.comment-date {
-  font-size: 0.8rem;
-  color: var(--text-muted);
-}
-
-.comment-delete-btn {
-  background: none;
-  border: none;
-  color: #EF4444;
-  font-size: 0.8rem;
-  cursor: pointer;
-  opacity: 0.6;
-  padding: 4px;
-}
-
-.comment-delete-btn:hover {
-  opacity: 1;
-}
-
-.comment-text {
-  font-size: 0.92rem;
-  color: #334155;
-  white-space: pre-line;
-  word-break: break-all;
-}
 
 /* --- Footer & Sharing --- */
 .footer {
@@ -1741,20 +1568,7 @@ textarea:focus {
     flex-direction: row;
   }
   
-  .guestbook-layout {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-  
-  .guestbook-form-card {
-    position: sticky;
-    top: 100px;
-    width: 45%;
-  }
-  
-  .guestbook-list-container {
-    width: 55%;
-  }
+
   
   .modal-body-content {
     flex-direction: row;
@@ -1916,32 +1730,7 @@ textarea:focus {
   }
 }
 
-/* Specific Form Layout optimization on narrow screens */
-@media (max-width: 480px) {
-  /* Stack guestbook name/password inputs vertically */
-  .form-row {
-    grid-template-columns: 1fr !important;
-    gap: 12px !important;
-  }
 
-  /* Make guestbook sticker option buttons flex grow evenly */
-  .sticker-selector {
-    display: grid !important;
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 8px !important;
-    width: 100%;
-  }
-
-  .sticker-opt {
-    padding: 10px 8px !important;
-    text-align: center;
-    font-size: 0.8rem !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 12px !important;
-  }
-}
 
 /* ====================================================
  * Admin Mode & Visual Editor Panel Styling

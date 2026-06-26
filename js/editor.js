@@ -98,8 +98,6 @@ window.SaeromVisualEditor = (function() {
     const officersSectionEl = document.getElementById('officers');
     const detailsSectionEl = document.querySelector('.details-section');
     const detailsLayoutEl = document.querySelector('.details-layout');
-    const guestbookSectionEl = document.querySelector('.guestbook-section');
-    const guestbookLayoutEl = document.querySelector('.guestbook-layout');
 
     // Slogan Badge initial values
     let sloganShow = sloganBadge ? sloganBadge.style.display !== 'none' : true;
@@ -170,8 +168,7 @@ window.SaeromVisualEditor = (function() {
     let countdownNumberSizeVal = getStyleVal(document.querySelector('.time-block .number'), '--countdown-number-size', '2rem');
     let countdownNumberSize = parseFloat(countdownNumberSizeVal) || 2;
 
-    const guestbookSectionPadding = parseInt(getStyleVal(guestbookSectionEl, '--guestbook-section-padding', '100'));
-    const guestbookLayoutGap = parseInt(getStyleVal(guestbookLayoutEl, '--guestbook-layout-gap', '40'));
+
 
     // Retrieve saved GitHub settings
     let savedToken = localStorage.getItem('saerom_github_token') || '';
@@ -435,20 +432,6 @@ window.SaeromVisualEditor = (function() {
             </div>
           </div>
 
-          <!-- Accordion 7: 방명록 설정 -->
-          <div class="admin-accordion-item">
-            <button class="admin-accordion-trigger"><i class="fa-solid fa-comments"></i> 방명록 설정</button>
-            <div class="admin-accordion-content">
-              <div class="admin-control-group">
-                <label>방명록 상하 여백 <span class="value-display" id="valGuestbookSectionPadding">${guestbookSectionPadding}px</span></label>
-                <input type="range" class="admin-slider" id="ctrlGuestbookSectionPadding" min="20" max="150" value="${guestbookSectionPadding}">
-              </div>
-              <div class="admin-control-group">
-                <label>방명록 카드 간격 <span class="value-display" id="valGuestbookLayoutGap">${guestbookLayoutGap}px</span></label>
-                <input type="range" class="admin-slider" id="ctrlGuestbookLayoutGap" min="10" max="80" value="${guestbookLayoutGap}">
-              </div>
-            </div>
-          </div>
 
           <!-- Accordion 8: 관리자 및 배포 설정 -->
           <div class="admin-accordion-item">
@@ -908,24 +891,6 @@ window.SaeromVisualEditor = (function() {
       reader.readAsDataURL(file);
     });
 
-    // --- Accordion 7: Guestbook Settings ---
-    const ctrlGuestbookSectionPadding = document.getElementById('ctrlGuestbookSectionPadding');
-    if (ctrlGuestbookSectionPadding) {
-      ctrlGuestbookSectionPadding.addEventListener('input', (e) => {
-        const guestbookSection = document.getElementById('guestbook');
-        if (guestbookSection) guestbookSection.style.setProperty('--guestbook-section-padding', e.target.value + 'px');
-        document.getElementById('valGuestbookSectionPadding').innerText = e.target.value + 'px';
-      });
-    }
-
-    const ctrlGuestbookLayoutGap = document.getElementById('ctrlGuestbookLayoutGap');
-    if (ctrlGuestbookLayoutGap) {
-      ctrlGuestbookLayoutGap.addEventListener('input', (e) => {
-        const guestbookSection = document.getElementById('guestbook');
-        if (guestbookSection) guestbookSection.style.setProperty('--guestbook-layout-gap', e.target.value + 'px');
-        document.getElementById('valGuestbookLayoutGap').innerText = e.target.value + 'px';
-      });
-    }
 
     // --- Actions ---
     document.getElementById('btnExport').addEventListener('click', exportHTML);
