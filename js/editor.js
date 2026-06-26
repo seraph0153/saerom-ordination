@@ -123,12 +123,12 @@ window.SaeromVisualEditor = (function() {
           
           <div class="admin-control-group">
             <label>상단 위치 <span class="value-display" id="valSloganTop">${sloganTop}%</span></label>
-            <input type="range" class="admin-slider" id="ctrlSloganTop" min="0" max="90" step="0.5" value="${sloganTop}">
+            <input type="range" class="admin-slider" id="ctrlSloganTop" min="-50" max="150" step="0.5" value="${sloganTop}">
           </div>
 
           <div class="admin-control-group">
             <label>좌측 위치 <span class="value-display" id="valSloganLeft">${sloganLeft}%</span></label>
-            <input type="range" class="admin-slider" id="ctrlSloganLeft" min="0" max="90" step="0.5" value="${sloganLeft}">
+            <input type="range" class="admin-slider" id="ctrlSloganLeft" min="-50" max="150" step="0.5" value="${sloganLeft}">
           </div>
 
           <div class="admin-control-group">

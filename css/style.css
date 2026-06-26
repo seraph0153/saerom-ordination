@@ -304,7 +304,7 @@ section {
     radial-gradient(rgba(0, 0, 0, 0.01) 1px, transparent 0);
   background-size: 8px 8px;
   background-position: 0 0, 4px 4px; /* Soft paper texture */
-  padding: 6vh 24px 8vh;
+  padding: 120px 24px 8vh;
   overflow: hidden;
 }
 
@@ -317,7 +317,7 @@ section {
   background-color: transparent;
   border-radius: 0;
   box-shadow: none;
-  overflow: hidden;
+  overflow: visible;
   border: none;
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   margin: 0 auto;
