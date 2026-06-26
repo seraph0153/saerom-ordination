@@ -229,7 +229,7 @@ window.SaeromVisualEditor = (function() {
           </div>
           <div class="admin-control-group">
             <label>소개 카드 크기 <span class="value-display" id="valOfficerCardSize">${cardSize}px</span></label>
-            <input type="range" class="admin-slider" id="ctrlOfficerCardSize" min="280" max="480" value="${cardSize}">
+            <input type="range" class="admin-slider" id="ctrlOfficerCardSize" min="280" max="650" value="${cardSize}">
           </div>
         </div>
 
