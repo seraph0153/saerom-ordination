@@ -107,6 +107,7 @@ window.SaeromVisualEditor = (function() {
 
     // Check if all cards are flipped
     let allFlipped = document.querySelectorAll('.slide-card-inner.flipped').length === document.querySelectorAll('.slide-card-inner').length;
+    let cardSize = document.querySelector('.slide-card-inner') ? parseInt(document.querySelector('.slide-card-inner').style.maxWidth) || 380 : 380;
 
     // Retrieve saved GitHub settings
     let savedToken = localStorage.getItem('saerom_github_token') || '';
@@ -220,6 +221,10 @@ window.SaeromVisualEditor = (function() {
               <span class="admin-slider-switch"></span>
             </label>
           </div>
+          <div class="admin-control-group">
+            <label>소개 카드 크기 <span class="value-display" id="valOfficerCardSize">${cardSize}px</span></label>
+            <input type="range" class="admin-slider" id="ctrlOfficerCardSize" min="280" max="480" value="${cardSize}">
+          </div>
         </div>
 
         <!-- Directions Map Section -->
@@ -248,7 +253,7 @@ window.SaeromVisualEditor = (function() {
           <div class="admin-section-title">관리자 비밀번호 설정</div>
           <div class="admin-control-group">
             <label>비밀번호 변경</label>
-            <input type="text" id="ctrlAdminPassword" placeholder="새 비밀번호 입력" value="${correctPass}" style="width: 100%; padding: 6px; border-radius: 4px; border: 1px solid #CBD5E1; font-size: 0.85rem; color: #334155; background-color: #FFFFFF; outline: none;">
+            <input type="password" id="ctrlAdminPassword" placeholder="새 비밀번호 입력 (변경 시에만 입력)" style="width: 100%; padding: 6px; border-radius: 4px; border: 1px solid #CBD5E1; font-size: 0.85rem; color: #334155; background-color: #FFFFFF; outline: none;">
           </div>
         </div>
 
@@ -418,6 +423,16 @@ window.SaeromVisualEditor = (function() {
       });
     });
 
+    const ctrlOfficerCardSize = document.getElementById('ctrlOfficerCardSize');
+    if (ctrlOfficerCardSize) {
+      ctrlOfficerCardSize.addEventListener('input', (e) => {
+        document.querySelectorAll('.slide-card-inner').forEach(card => {
+          card.style.maxWidth = e.target.value + 'px';
+        });
+        document.getElementById('valOfficerCardSize').innerText = e.target.value + 'px';
+      });
+    }
+
     // --- Directions Map Listeners ---
     const ctrlMapWidth = document.getElementById('ctrlMapWidth');
     ctrlMapWidth.addEventListener('input', (e) => {
@@ -495,6 +510,16 @@ window.SaeromVisualEditor = (function() {
     }
   }
 
+  function simpleHash(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      const char = str.charCodeAt(i);
+      hash = (hash << 5) - hash + char;
+      hash = hash & hash;
+    }
+    return 'pass_' + Math.abs(hash).toString(36);
+  }
+
   function getCleanHTML() {
     // 1. Temporarily turn off editing mode attributes and clean elements
     enableEditing(false);
@@ -532,11 +557,12 @@ window.SaeromVisualEditor = (function() {
       }
     }
     
-    // Update password attribute on the trigger button so it persists in the HTML
+    // Update password attribute on the trigger button so it persists in the HTML (hashed!)
     const triggerBtn = document.getElementById('adminEditTrigger');
     const ctrlAdminPassword = document.getElementById('ctrlAdminPassword');
-    if (triggerBtn && ctrlAdminPassword) {
-      triggerBtn.setAttribute('data-password', ctrlAdminPassword.value.trim());
+    if (triggerBtn && ctrlAdminPassword && ctrlAdminPassword.value.trim() !== '') {
+      const hashedPass = simpleHash(ctrlAdminPassword.value.trim());
+      triggerBtn.setAttribute('data-password', hashedPass);
     }
 
     // Remove temporary tags

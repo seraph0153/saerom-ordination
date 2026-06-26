@@ -571,6 +571,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  function simpleHash(str) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      const char = str.charCodeAt(i);
+      hash = (hash << 5) - hash + char;
+      hash = hash & hash;
+    }
+    return 'pass_' + Math.abs(hash).toString(36);
+  }
+
   // --- 9. Admin Mode Password Prompt & Editor Loader ---
   const adminBtn = document.getElementById('adminEditTrigger');
   if (adminBtn) {
@@ -581,11 +591,14 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
       
-      const correctPass = adminBtn.getAttribute('data-password') || '0153';
-      const inputPass = prompt('관리자 비밀번호를 입력해 주세요 (초기 비밀번호: ' + correctPass + '):');
+      const correctHash = adminBtn.getAttribute('data-password') || 'pass_vp0f'; // 'pass_vp0f' is hash of '0153'
+      const inputPass = prompt('관리자 비밀번호를 입력해 주세요:');
       if (inputPass === null) return; // Cancel
       
-      if (inputPass === correctPass || inputPass === 'admin') {
+      const inputHash = simpleHash(inputPass);
+      const adminHash = 'pass_1j67nz'; // 'pass_1j67nz' is hash of 'admin'
+      
+      if (inputHash === correctHash || inputHash === adminHash) {
         showToast('관리자 인증 성공! 편집 모드를 로드합니다.', 'fa-solid fa-user-shield');
         
         // Dynamically load editor.js
