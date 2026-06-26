@@ -1944,37 +1944,37 @@ textarea:focus {
   position: fixed;
   bottom: 24px;
   right: 24px;
-  width: 44px;
-  height: 44px;
-  background-color: rgba(255, 255, 255, 0.55);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--border-color);
-  color: var(--text-muted);
+  width: 46px;
+  height: 46px;
+  background-color: var(--primary-navy) !important;
+  border: 1px solid var(--primary-navy-dark) !important;
+  color: #FFFFFF !important;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 1000;
-  box-shadow: var(--shadow-md);
+  z-index: 3000 !important; /* Force to be above all elements */
+  box-shadow: 0 4px 15px rgba(14, 58, 130, 0.3) !important;
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  opacity: 0.6;
+  opacity: 0.9 !important;
 }
 
 .admin-edit-trigger:hover {
-  background-color: #FFFFFF;
-  color: var(--accent-orange);
-  opacity: 1;
-  transform: rotate(60deg) scale(1.08);
+  background-color: var(--accent-orange) !important;
+  border-color: var(--accent-orange-dark) !important;
+  color: #FFFFFF !important;
+  opacity: 1 !important;
+  transform: rotate(60deg) scale(1.1);
+  box-shadow: 0 6px 20px rgba(242, 110, 34, 0.4) !important;
 }
 
 @media (max-width: 767px) {
   .admin-edit-trigger {
     bottom: 85px; /* Above mobile bottom navigation bar */
     right: 16px;
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
   }
 }
 
