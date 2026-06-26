@@ -581,10 +581,11 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
       
-      const inputPass = prompt('관리자 비밀번호를 입력해 주세요 (초기 비밀번호: 0153):');
+      const correctPass = adminBtn.getAttribute('data-password') || '0153';
+      const inputPass = prompt('관리자 비밀번호를 입력해 주세요 (초기 비밀번호: ' + correctPass + '):');
       if (inputPass === null) return; // Cancel
       
-      if (inputPass === '0153' || inputPass === 'admin') {
+      if (inputPass === correctPass || inputPass === 'admin') {
         showToast('관리자 인증 성공! 편집 모드를 로드합니다.', 'fa-solid fa-user-shield');
         
         // Dynamically load editor.js

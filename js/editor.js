@@ -117,6 +117,8 @@ window.SaeromVisualEditor = (function() {
     const savedUser = localStorage.getItem('saerom_github_user') || 'seraph0153';
     const savedRepo = localStorage.getItem('saerom_github_repo') || 'saerom-ordination';
 
+    const correctPass = document.getElementById('adminEditTrigger')?.getAttribute('data-password') || '0153';
+
     panelEl.innerHTML = `
       <div class="admin-panel-header">
         <h3><i class="fa-solid fa-sliders"></i> 실시간 디자인 편집기</h3>
@@ -238,6 +240,15 @@ window.SaeromVisualEditor = (function() {
           <div class="admin-control-group">
             <label>약도 상단 여백 <span class="value-display" id="valMapMarginTop">${mapMarginTop}px</span></label>
             <input type="range" class="admin-slider" id="ctrlMapMarginTop" min="-40" max="100" value="${mapMarginTop}">
+          </div>
+        </div>
+
+        <!-- Admin Password Configuration Section -->
+        <div>
+          <div class="admin-section-title">관리자 비밀번호 설정</div>
+          <div class="admin-control-group">
+            <label>비밀번호 변경</label>
+            <input type="text" id="ctrlAdminPassword" placeholder="새 비밀번호 입력" value="${correctPass}" style="width: 100%; padding: 6px; border-radius: 4px; border: 1px solid #CBD5E1; font-size: 0.85rem; color: #334155; background-color: #FFFFFF; outline: none;">
           </div>
         </div>
 
@@ -521,12 +532,17 @@ window.SaeromVisualEditor = (function() {
       }
     }
     
-    // Remove temporary tags
+    // Update password attribute on the trigger button so it persists in the HTML
     const triggerBtn = document.getElementById('adminEditTrigger');
+    const ctrlAdminPassword = document.getElementById('ctrlAdminPassword');
+    if (triggerBtn && ctrlAdminPassword) {
+      triggerBtn.setAttribute('data-password', ctrlAdminPassword.value.trim());
+    }
+
+    // Remove temporary tags
     const panel = document.getElementById('adminPanel');
     const scripts = document.querySelectorAll('script');
     
-    if (triggerBtn) triggerBtn.remove();
     if (panel) panel.remove();
     
     // Find the editor script tag and remove it
@@ -560,20 +576,6 @@ window.SaeromVisualEditor = (function() {
     // Restore cover preview src back to dataUrl (Base64) locally
     if (coverImg && originalCoverSrc) {
       coverImg.setAttribute('src', originalCoverSrc);
-    }
-    
-    // Restore trigger button in DOM
-    if (!document.getElementById('adminEditTrigger')) {
-      const btn = document.createElement('button');
-      btn.id = 'adminEditTrigger';
-      btn.className = 'admin-edit-trigger';
-      btn.innerHTML = '<i class="fa-solid fa-gear"></i>';
-      document.body.appendChild(btn);
-      
-      // Re-attach main.js listener to trigger button
-      btn.addEventListener('click', () => {
-        togglePanel();
-      });
     }
 
     return htmlContent;
