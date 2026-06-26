@@ -591,7 +591,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
       
-      const correctHash = adminBtn.getAttribute('data-password') || 'pass_vp0f'; // 'pass_vp0f' is hash of '0153'
+      const correctHash = adminBtn.getAttribute('data-auth') || adminBtn.getAttribute('data-password') || 'pass_vp0f'; // 'pass_vp0f' is hash of '0153'
       const inputPass = prompt('관리자 비밀번호를 입력해 주세요:');
       if (inputPass === null) return; // Cancel
       

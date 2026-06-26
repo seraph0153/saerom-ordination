@@ -107,7 +107,13 @@ window.SaeromVisualEditor = (function() {
 
     // Check if all cards are flipped
     let allFlipped = document.querySelectorAll('.slide-card-inner.flipped').length === document.querySelectorAll('.slide-card-inner').length;
-    let cardSize = document.querySelector('.slide-card-inner') ? parseInt(document.querySelector('.slide-card-inner').style.maxWidth) || 380 : 380;
+    let cardSize = 380;
+    const officersSection = document.getElementById('officers');
+    if (officersSection && officersSection.style.getPropertyValue('--officer-card-max-width')) {
+      cardSize = parseInt(officersSection.style.getPropertyValue('--officer-card-max-width')) || 380;
+    } else if (document.querySelector('.slide-card-inner')) {
+      cardSize = parseInt(document.querySelector('.slide-card-inner').style.maxWidth) || 380;
+    }
 
     // Retrieve saved GitHub settings
     let savedToken = localStorage.getItem('saerom_github_token') || '';
@@ -118,7 +124,7 @@ window.SaeromVisualEditor = (function() {
     const savedUser = localStorage.getItem('saerom_github_user') || 'seraph0153';
     const savedRepo = localStorage.getItem('saerom_github_repo') || 'saerom-ordination';
 
-    const correctPass = document.getElementById('adminEditTrigger')?.getAttribute('data-password') || '0153';
+    const correctPass = document.getElementById('adminEditTrigger')?.getAttribute('data-auth') || document.getElementById('adminEditTrigger')?.getAttribute('data-password') || '0153';
 
     panelEl.innerHTML = `
       <div class="admin-panel-header">
@@ -426,6 +432,10 @@ window.SaeromVisualEditor = (function() {
     const ctrlOfficerCardSize = document.getElementById('ctrlOfficerCardSize');
     if (ctrlOfficerCardSize) {
       ctrlOfficerCardSize.addEventListener('input', (e) => {
+        const officersSection = document.getElementById('officers');
+        if (officersSection) {
+          officersSection.style.setProperty('--officer-card-max-width', e.target.value + 'px');
+        }
         document.querySelectorAll('.slide-card-inner').forEach(card => {
           card.style.maxWidth = e.target.value + 'px';
         });
@@ -560,9 +570,12 @@ window.SaeromVisualEditor = (function() {
     // Update password attribute on the trigger button so it persists in the HTML (hashed!)
     const triggerBtn = document.getElementById('adminEditTrigger');
     const ctrlAdminPassword = document.getElementById('ctrlAdminPassword');
-    if (triggerBtn && ctrlAdminPassword && ctrlAdminPassword.value.trim() !== '') {
-      const hashedPass = simpleHash(ctrlAdminPassword.value.trim());
-      triggerBtn.setAttribute('data-password', hashedPass);
+    if (triggerBtn) {
+      if (ctrlAdminPassword && ctrlAdminPassword.value.trim() !== '') {
+        const hashedPass = simpleHash(ctrlAdminPassword.value.trim());
+        triggerBtn.setAttribute('data-auth', hashedPass);
+      }
+      triggerBtn.removeAttribute('data-password'); // Remove legacy attribute
     }
 
     // Remove temporary tags
