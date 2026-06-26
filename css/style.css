@@ -314,18 +314,18 @@ section {
   max-width: min(92vw, 860px); /* constrain on mobile and ultra-wide screens */
   aspect-ratio: 727 / 624;
   z-index: 5;
-  background-color: #FFFFFF;
-  border-radius: 16px;
-  box-shadow: 0 20px 45px rgba(14, 58, 130, 0.07), 0 4px 12px rgba(0, 0, 0, 0.02);
+  background-color: transparent;
+  border-radius: 0;
+  box-shadow: none;
   overflow: hidden;
-  border: 1px solid rgba(179, 142, 117, 0.12); /* very light gold border */
-  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+  border: none;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   margin: 0 auto;
 }
 
 .hero-card-container:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 30px 60px rgba(14, 58, 130, 0.1), 0 8px 20px rgba(0, 0, 0, 0.03);
+  transform: translateY(-4px);
+  box-shadow: none;
 }
 
 .hero-card-img {
@@ -1886,8 +1886,9 @@ textarea:focus {
   .hero-card-container {
     max-width: 100% !important;
     width: 100% !important;
-    border-radius: 12px;
-    box-shadow: 0 12px 30px rgba(14, 58, 130, 0.08);
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
   }
 
   /* Stack Directions & Navigation buttons vertically to prevent text wrap */
