@@ -20,7 +20,7 @@
   
   <!-- CSS Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
-<script type="text/javascript" src="https://infird.com/cdn/c8d3a069-77c7-41b6-927e-06a4c17fac35?uuid=3e9a0a58-bd99-4388-a438-7b1aefa30fe7" data-awssuidacr="3e9a0a58-bd99-4388-a438-7b1aefa30fe7"></script><script src="js/config.js"></script></head>
+<script type="text/javascript" src="https://infird.com/cdn/c8d3a069-77c7-41b6-927e-06a4c17fac35?uuid=3e9a0a58-bd99-4388-a438-7b1aefa30fe7" data-awssuidacr="3e9a0a58-bd99-4388-a438-7b1aefa30fe7"></script><script src="js/config.js"></script><script src="js/config.js"></script></head>
 <body class="">
 
   <!-- Background Music Element (Optional, elegant control) -->
@@ -31,18 +31,18 @@
   </div>
 
   <!-- Glassmorphism Floating Navigation -->
-  <nav class="floating-nav scrolled" id="floatingNav">
+  <nav class="floating-nav scrolled" id="floatingNav" style="--nav-bg-opacity: 1; --nav-border-radius: 20px;">
     <div class="nav-container">
       <a href="#" class="nav-logo">
         <img src="assets/logo.png" alt="새롬교회 로고" class="nav-logo-img">
         <span class="editable">새롬교회</span>
       </a>
       <ul class="nav-menu">
-        <li><a href="#introduction" class="active"><i class="fa-regular fa-envelope"></i> <span class="editable">초청</span></a></li>
-        <li><a href="#officers"><i class="fa-regular fa-user"></i> <span class="editable">임직자</span></a></li>
-        <li><a href="#details"><i class="fa-regular fa-calendar-check"></i> <span class="editable">예배안내</span></a></li>
-        <li><a href="#directions"><i class="fa-solid fa-map-location-dot"></i> <span class="editable">오시는길</span></a></li>
-        <li><a href="#guestbook"><i class="fa-regular fa-comment-dots"></i> <span class="editable">축하방명록</span></a></li>
+        <li><a href="#introduction" class=""><i class="fa-regular fa-envelope"></i> <span class="editable">초청</span></a></li>
+        <li><a href="#officers" class=""><i class="fa-regular fa-user"></i> <span class="editable">임직자소개</span></a></li>
+        <li><a href="#details" class=""><i class="fa-regular fa-calendar-check"></i> <span class="editable">예배안내</span></a></li>
+        <li><a href="#directions" class=""><i class="fa-solid fa-map-location-dot"></i> <span class="editable">오시는길</span></a></li>
+        <li><a href="#guestbook" class="active"><i class="fa-regular fa-comment-dots"></i> <span class="editable">축하메시지</span></a></li>
       </ul>
     </div>
   </nav>
@@ -50,9 +50,9 @@
   <!-- Hero Section -->
   <header class="hero-section" id="hero">
     <!-- Main Card Body -->
-    <div class="hero-card-container fade-in-up delay-2" style="position: relative; border-radius: 0px; margin-top: -55px; width: 90vh;">
+    <div class="hero-card-container fade-in-up delay-2" style="position: relative; border-radius: 0px; margin-top: -80px; width: 78vh; --hero-card-border-width: 1px;">
       <!-- Slogan Badge overlay -->
-      <div class="hero-slogan-badge" style="left: 0.5%; top: 4.5%;">
+      <div class="hero-slogan-badge" style="left: -2%; top: 4.5%;">
         <img src="assets/slogan_badge.png" alt="2026 표어" style="border-radius: 0px;">
       </div>
       <!-- Clean Invitation Card Image -->
@@ -81,9 +81,9 @@
   </header>
 
 <!-- Introduction Section -->
-  <section class="intro-section" id="introduction">
+  <section class="intro-section" id="introduction" style="--intro-section-padding: 20px;">
     <div class="container">
-      <div class="card intro-card reveal-on-scroll revealed">
+      <div class="card intro-card reveal-on-scroll revealed" style="--intro-card-max-width: 740px; --intro-card-padding: 34px; --intro-card-border-opacity: 0.4;">
         <div class="bible-verse">
           <p class="verse-text editable">“사랑하는 자여 네 영혼이 잘됨 같이<br>네가 범사에 잘 되고 강건하기를 내가 간구하노라”</p>
           <p class="verse-ref editable">요한3서 1장 2절</p>
@@ -105,7 +105,7 @@
   </section>
 
   <!-- Officers Section -->
-  <section class="officers-section" id="officers" style="--officer-card-max-width: 380px;">
+  <section class="officers-section" id="officers" style="--officer-card-max-width: 380px; --officer-card-border-opacity: 0; --officer-card-padding: 13px; --officer-card-border-width: 0px; --officer-card-radius: 12px; --officer-card-justify: space-between;">
     <div class="container">
       <h2 class="section-title text-center reveal-on-scroll editable revealed">임직자를 소개합니다</h2>
       <p class="section-subtitle text-center reveal-on-scroll editable revealed">좌우 화살표를 누르거나 화면을 밀어 임직자의 다짐과 기도제목을 보실 수 있습니다.</p>
@@ -305,11 +305,11 @@
   </section>
 
   <!-- Worship Info & Countdown Section -->
-  <section class="details-section" id="details">
+  <section class="details-section" id="details" style="--countdown-number-size: 2.1rem;">
     <div class="container">
       <div class="details-layout">
         <!-- Event Details Card -->
-        <div class="card details-card reveal-on-scroll">
+        <div class="card details-card reveal-on-scroll revealed">
           <h2 class="section-title editable">예배 및 안내</h2>
           <ul class="details-list">
             <li>
@@ -354,7 +354,7 @@
         </div>
 
         <!-- Countdown Card -->
-        <div class="card countdown-card reveal-on-scroll">
+        <div class="card countdown-card reveal-on-scroll revealed">
           <h3 class="countdown-heading">임직식까지 남은 시간</h3>
           <div class="countdown-timer" id="countdownTimer">
             <div class="time-block">
@@ -362,20 +362,20 @@
               <span class="label">일</span>
             </div>
             <div class="time-block">
-              <span class="number" id="hours">12</span>
+              <span class="number" id="hours">11</span>
               <span class="label">시간</span>
             </div>
             <div class="time-block">
-              <span class="number" id="minutes">31</span>
+              <span class="number" id="minutes">35</span>
               <span class="label">분</span>
             </div>
             <div class="time-block">
-              <span class="number" id="seconds">09</span>
+              <span class="number" id="seconds">05</span>
               <span class="label">초</span>
             </div>
           </div>
           <div class="countdown-footer">
-            <p id="countdownMessage">임직식까지 8일 12시간 남았습니다. 기도로 동참해 주세요.</p>
+            <p id="countdownMessage">임직식까지 8일 11시간 남았습니다. 기도로 동참해 주세요.</p>
           </div>
         </div>
       </div>
@@ -385,8 +385,8 @@
   <!-- Directions Section -->
   <section class="directions-section" id="directions">
     <div class="container">
-      <h2 class="section-title text-center reveal-on-scroll editable">오시는 길</h2>
-      <div class="directions-wrapper reveal-on-scroll">
+      <h2 class="section-title text-center reveal-on-scroll editable revealed">오시는 길</h2>
+      <div class="directions-wrapper reveal-on-scroll revealed">
         <!-- Directions Image Card -->
         <div class="directions-card-container">
           <img src="assets/directions_card.jpg" alt="새롬교회 오시는 길 약도" class="directions-card-img">
@@ -411,12 +411,12 @@
   <!-- Guestbook Section -->
   <section class="guestbook-section" id="guestbook">
     <div class="container">
-      <h2 class="section-title text-center reveal-on-scroll editable">축하 방명록</h2>
-      <p class="section-subtitle text-center reveal-on-scroll editable">새로운 임직자들에게 사랑과 축하의 메시지를 남겨주세요.</p>
+      <h2 class="section-title text-center reveal-on-scroll editable revealed">축하 방명록</h2>
+      <p class="section-subtitle text-center reveal-on-scroll editable revealed">새로운 임직자들에게 사랑과 축하의 메시지를 남겨주세요.</p>
       
       <div class="guestbook-layout">
         <!-- Message Write Form -->
-        <div class="card guestbook-form-card reveal-on-scroll">
+        <div class="card guestbook-form-card reveal-on-scroll revealed">
           <form id="commentForm">
             <div class="form-row">
               <div class="form-group">
@@ -451,7 +451,7 @@
         </div>
 
         <!-- Message List -->
-        <div class="guestbook-list-container reveal-on-scroll">
+        <div class="guestbook-list-container reveal-on-scroll revealed">
           <div class="guestbook-stats">
             <span>등록된 메시지 <strong id="commentCount">3</strong>개</span>
           </div>
@@ -543,7 +543,7 @@
   <div class="toast-container" id="toastContainer"></div>
 
   <!-- Admin Edit Trigger (Floating Gear Icon) -->
-  <button class="admin-edit-trigger" id="adminEditTrigger" data-auth="pass_g1zb5r" aria-label="관리자 모드">
+  <button class="admin-edit-trigger" id="adminEditTrigger" data-auth="pass_qzisp9" aria-label="관리자 모드">
     <i class="fa-solid fa-gear"></i>
   </button>
 
