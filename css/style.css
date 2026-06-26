@@ -73,6 +73,10 @@ img {
   display: block;
 }
 
+section {
+  scroll-margin-top: 90px;
+}
+
 /* --- Reusable Components & Layout --- */
 .container {
   width: 100%;
@@ -1710,5 +1714,153 @@ textarea:focus {
   
   .officers-grid {
     grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* --- Mobile Layout Redesign & Optimizations (iPhone 13 Pro & Mobile Devices) --- */
+@media (max-width: 767px) {
+  /* Section offset for mobile since floating nav is at the bottom */
+  section {
+    scroll-margin-top: 24px;
+  }
+
+  /* Body padding-bottom so floating bottom nav doesn't cover footer content */
+  body {
+    padding-bottom: 90px;
+  }
+
+  /* Expand horizontal breathing room inside cards */
+  .card {
+    padding: 24px 16px;
+    border-radius: 16px;
+  }
+
+  /* Floating Bottom Navigation Dock */
+  .floating-nav {
+    position: fixed;
+    top: auto !important; /* Force bottom position */
+    bottom: 16px !important; /* Floating offset from bottom */
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 92% !important;
+    max-width: 480px;
+    padding: 6px 8px !important;
+    border-radius: 35px !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12) !important;
+    border: 1px solid rgba(255, 255, 255, 0.7) !important;
+    background-color: rgba(255, 255, 255, 0.88) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+  }
+
+  /* Ensure scrolled state maintains bottom positioning */
+  .floating-nav.scrolled {
+    top: auto !important;
+    bottom: 16px !important;
+    width: 92% !important;
+    box-shadow: 0 10px 35px rgba(14, 58, 130, 0.15) !important;
+  }
+
+  /* Hide logo inside the mobile floating navbar to maximize space */
+  .floating-nav .nav-logo {
+    display: none !important;
+  }
+
+  .floating-nav .nav-container {
+    justify-content: center !important;
+    width: 100%;
+  }
+
+  .floating-nav .nav-menu {
+    width: 100% !important;
+    justify-content: space-around !important;
+    gap: 0 !important;
+  }
+
+  .floating-nav .nav-menu li {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  /* Vertical icon + text labels inside bottom dock */
+  .floating-nav .nav-menu a {
+    flex-direction: column !important;
+    gap: 2px !important;
+    font-size: 0.65rem !important;
+    font-weight: 600;
+    padding: 6px 4px !important;
+    border-radius: 16px !important;
+    color: var(--text-muted) !important;
+    width: 100%;
+    align-items: center;
+  }
+
+  .floating-nav .nav-menu a i {
+    font-size: 1.15rem !important; /* Emphasize icon */
+    margin: 0;
+  }
+
+  .floating-nav .nav-menu a:hover,
+  .floating-nav .nav-menu a.active {
+    color: var(--primary-navy) !important;
+    background-color: rgba(14, 58, 130, 0.08) !important;
+  }
+
+  /* Hero Section tweaks to minimize empty white margins */
+  .hero-section {
+    padding: 4vh 16px 6vh !important;
+    min-height: calc(100vh - 50px);
+  }
+
+  .hero-card-container {
+    max-width: 100% !important;
+    width: 100% !important;
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(14, 58, 130, 0.08);
+  }
+
+  /* Stack Directions & Navigation buttons vertically to prevent text wrap */
+  .directions-buttons {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .btn-map.copy-address {
+    grid-column: span 1 !important;
+  }
+
+  .btn-map {
+    padding: 12px 16px !important;
+    font-size: 0.9rem !important;
+    width: 100%;
+    border-radius: 12px !important;
+  }
+}
+
+/* Specific Form Layout optimization on narrow screens */
+@media (max-width: 480px) {
+  /* Stack guestbook name/password inputs vertically */
+  .form-row {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  /* Make guestbook sticker option buttons flex grow evenly */
+  .sticker-selector {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+    width: 100%;
+  }
+
+  .sticker-opt {
+    padding: 10px 8px !important;
+    text-align: center;
+    font-size: 0.8rem !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 12px !important;
   }
 }
