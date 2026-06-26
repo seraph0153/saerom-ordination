@@ -13,6 +13,9 @@ window.SaeromVisualEditor = (function() {
   let namesCard = null;
   let directionsMap = null;
 
+  // Global state for uploaded files
+  let uploadedMap = null;
+
   function init() {
     sloganBadge = document.querySelector('.hero-slogan-badge');
     heroCard = document.querySelector('.hero-card-container');
@@ -32,17 +35,29 @@ window.SaeromVisualEditor = (function() {
     showEditorToast('시각 편집 모드가 활성화되었습니다. 텍스트를 클릭해 직접 수정하고 슬라이더로 레이아웃을 조절해 보세요!', 'fa-solid fa-wand-magic-sparkles');
   }
 
+  function preventLinkClick(e) {
+    e.preventDefault();
+  }
+
   function enableEditing(enable) {
     isEditing = enable;
     if (enable) {
       document.body.classList.add('admin-mode-active');
       document.querySelectorAll('.editable').forEach(el => {
         el.setAttribute('contenteditable', 'true');
+        const parentLink = el.closest('a');
+        if (parentLink) {
+          parentLink.addEventListener('click', preventLinkClick, false);
+        }
       });
     } else {
       document.body.classList.remove('admin-mode-active');
       document.querySelectorAll('.editable').forEach(el => {
         el.removeAttribute('contenteditable');
+        const parentLink = el.closest('a');
+        if (parentLink) {
+          parentLink.removeEventListener('click', preventLinkClick, false);
+        }
       });
     }
   }
@@ -69,10 +84,15 @@ window.SaeromVisualEditor = (function() {
 
     // Hero Card initial values
     let cardWidth = heroCard ? parseInt(heroCard.style.width) || 81 : 81;
+    let cardMarginTop = heroCard ? parseInt(heroCard.style.marginTop) || 0 : 0;
 
     // Directions Map initial values
     let mapWidth = directionsMap ? parseInt(directionsMap.style.width) || 100 : 100;
     let mapRadius = directionsMap ? parseInt(directionsMap.style.borderRadius) || 16 : 16;
+    let mapMarginTop = directionsMap ? parseInt(directionsMap.style.marginTop) || 0 : 0;
+
+    // Check if all cards are flipped
+    let allFlipped = document.querySelectorAll('.slide-card-inner.flipped').length === document.querySelectorAll('.slide-card-inner').length;
 
     // Retrieve saved GitHub settings
     const savedToken = localStorage.getItem('saerom_github_token') || '';
@@ -116,10 +136,14 @@ window.SaeromVisualEditor = (function() {
 
         <!-- Hero Card Settings -->
         <div>
-          <div class="admin-section-title">초청장 카드 크기</div>
+          <div class="admin-section-title">초청장 카드 설정</div>
           <div class="admin-control-group">
             <label>가로 폭 (데스크톱 비율) <span class="value-display" id="valCardWidth">${cardWidth}%</span></label>
             <input type="range" class="admin-slider" id="ctrlCardWidth" min="50" max="100" value="${cardWidth}">
+          </div>
+          <div class="admin-control-group">
+            <label>카드 상단 위치 <span class="value-display" id="valCardMarginTop">${cardMarginTop}px</span></label>
+            <input type="range" class="admin-slider" id="ctrlCardMarginTop" min="-80" max="150" value="${cardMarginTop}">
           </div>
         </div>
 
@@ -151,9 +175,25 @@ window.SaeromVisualEditor = (function() {
           </div>
         </div>
 
+        <!-- Officer Slide Control Section -->
+        <div>
+          <div class="admin-section-title">임직자 소개 카드 설정</div>
+          <div class="admin-toggle-wrapper">
+            <span>소개글 편집 모드 (전체 카드 뒤집기)</span>
+            <label class="admin-switch">
+              <input type="checkbox" id="ctrlFlipAllCards" ${allFlipped ? 'checked' : ''}>
+              <span class="admin-slider-switch"></span>
+            </label>
+          </div>
+        </div>
+
         <!-- Directions Map Section -->
         <div>
           <div class="admin-section-title">오시는 길 약도 설정</div>
+          <div class="admin-control-group" style="margin-bottom: 12px;">
+            <label>약도 이미지 교체 (내 컴퓨터에서 선택)</label>
+            <input type="file" id="ctrlMapUpload" accept="image/*" style="margin-top: 4px; font-size: 0.75rem; color: #64748B;">
+          </div>
           <div class="admin-control-group">
             <label>약도 가로 폭 <span class="value-display" id="valMapWidth">${mapWidth}%</span></label>
             <input type="range" class="admin-slider" id="ctrlMapWidth" min="50" max="100" value="${mapWidth}">
@@ -161,6 +201,10 @@ window.SaeromVisualEditor = (function() {
           <div class="admin-control-group">
             <label>둥근 모서리 <span class="value-display" id="valMapRadius">${mapRadius}px</span></label>
             <input type="range" class="admin-slider" id="ctrlMapRadius" min="0" max="40" value="${mapRadius}">
+          </div>
+          <div class="admin-control-group">
+            <label>약도 상단 여백 <span class="value-display" id="valMapMarginTop">${mapMarginTop}px</span></label>
+            <input type="range" class="admin-slider" id="ctrlMapMarginTop" min="-40" max="100" value="${mapMarginTop}">
           </div>
         </div>
 
@@ -232,6 +276,14 @@ window.SaeromVisualEditor = (function() {
       document.getElementById('valCardWidth').innerText = e.target.value + '%';
     });
 
+    const ctrlCardMarginTop = document.getElementById('ctrlCardMarginTop');
+    ctrlCardMarginTop.addEventListener('input', (e) => {
+      if (heroCard) {
+        heroCard.style.marginTop = e.target.value + 'px';
+      }
+      document.getElementById('valCardMarginTop').innerText = e.target.value + 'px';
+    });
+
     // --- Names Card Listeners ---
     const ctrlNamesShow = document.getElementById('ctrlNamesShow');
     ctrlNamesShow.addEventListener('change', (e) => {
@@ -260,6 +312,18 @@ window.SaeromVisualEditor = (function() {
       document.getElementById('valNamesPadding').innerText = e.target.value + 'px';
     });
 
+    // --- Officer Cards Flip Listeners ---
+    const ctrlFlipAllCards = document.getElementById('ctrlFlipAllCards');
+    ctrlFlipAllCards.addEventListener('change', (e) => {
+      document.querySelectorAll('.slide-card-inner').forEach(card => {
+        if (e.target.checked) {
+          card.classList.add('flipped');
+        } else {
+          card.classList.remove('flipped');
+        }
+      });
+    });
+
     // --- Directions Map Listeners ---
     const ctrlMapWidth = document.getElementById('ctrlMapWidth');
     ctrlMapWidth.addEventListener('input', (e) => {
@@ -279,6 +343,43 @@ window.SaeromVisualEditor = (function() {
         if (img) img.style.borderRadius = e.target.value + 'px';
       }
       document.getElementById('valMapRadius').innerText = e.target.value + 'px';
+    });
+
+    const ctrlMapMarginTop = document.getElementById('ctrlMapMarginTop');
+    ctrlMapMarginTop.addEventListener('input', (e) => {
+      if (directionsMap) {
+        directionsMap.style.marginTop = e.target.value + 'px';
+      }
+      document.getElementById('valMapMarginTop').innerText = e.target.value + 'px';
+    });
+
+    // --- Map Upload Listener ---
+    const ctrlMapUpload = document.getElementById('ctrlMapUpload');
+    ctrlMapUpload.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const base64 = event.target.result.split(',')[1];
+        const ext = file.name.split('.').pop().toLowerCase();
+
+        uploadedMap = {
+          name: file.name,
+          ext: ext,
+          contentType: file.type,
+          base64: base64,
+          dataUrl: event.target.result
+        };
+
+        // Update preview in the DOM instantly
+        const mapImg = directionsMap.querySelector('.directions-card-img');
+        if (mapImg) {
+          mapImg.src = event.target.result;
+        }
+        showEditorToast('약도 이미지가 임시 교체되었습니다. [깃허브 바로 배포] 시 최종 적용됩니다.', 'fa-solid fa-image');
+      };
+      reader.readAsDataURL(file);
     });
 
     // --- Actions ---
@@ -304,6 +405,27 @@ window.SaeromVisualEditor = (function() {
     // 1. Temporarily turn off editing mode attributes and clean elements
     enableEditing(false);
     
+    // Store original flipped states so we can restore them in the UI after serialization
+    const flippedCards = [];
+    document.querySelectorAll('.slide-card-inner').forEach((card, idx) => {
+      if (card.classList.contains('flipped')) {
+        flippedCards.push(idx);
+        card.classList.remove('flipped');
+      }
+    });
+
+    // Store original image src for restoration if uploadedMap is present
+    let originalMapSrc = null;
+    let mapImg = null;
+    if (uploadedMap && directionsMap) {
+      mapImg = directionsMap.querySelector('.directions-card-img');
+      if (mapImg) {
+        originalMapSrc = mapImg.getAttribute('src');
+        // Point to the relative filename that will be committed to GitHub
+        mapImg.setAttribute('src', `assets/directions_card_uploaded.${uploadedMap.ext}`);
+      }
+    }
+    
     // Remove temporary tags
     const triggerBtn = document.getElementById('adminEditTrigger');
     const panel = document.getElementById('adminPanel');
@@ -328,6 +450,17 @@ window.SaeromVisualEditor = (function() {
       panelEl.classList.add('open');
     }
     enableEditing(true);
+
+    // Restore flipped states in the UI
+    flippedCards.forEach(idx => {
+      const card = document.querySelectorAll('.slide-card-inner')[idx];
+      if (card) card.classList.add('flipped');
+    });
+
+    // Restore image preview src back to dataUrl (Base64) locally
+    if (mapImg && originalMapSrc) {
+      mapImg.setAttribute('src', originalMapSrc);
+    }
     
     // Restore trigger button in DOM
     if (!document.getElementById('adminEditTrigger')) {
@@ -383,15 +516,58 @@ window.SaeromVisualEditor = (function() {
 
     const btnPublish = document.getElementById('btnPublish');
     const originalText = btnPublish.innerHTML;
-    btnPublish.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 배포 파일 빌드 중...';
     btnPublish.disabled = true;
 
     try {
+      // Step 1: Upload image file first if uploadedMap exists
+      if (uploadedMap) {
+        btnPublish.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 약도 이미지 업로드 중...';
+        
+        const imgPath = `assets/directions_card_uploaded.${uploadedMap.ext}`;
+        const imgUrl = `https://api.github.com/repos/${user}/${repo}/contents/${imgPath}`;
+        
+        // Check if image already exists to get SHA (prevent overwrite conflicts)
+        let imgSha = null;
+        const imgCheckRes = await fetch(imgUrl, {
+          headers: {
+            'Authorization': `token ${token}`,
+            'Accept': 'application/vnd.github.v3+json'
+          }
+        });
+        
+        if (imgCheckRes.ok) {
+          const imgData = await imgCheckRes.json();
+          imgSha = imgData.sha;
+        }
+
+        // Upload the new image asset
+        const imgPutRes = await fetch(imgUrl, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `token ${token}`,
+            'Accept': 'application/vnd.github.v3+json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            message: 'media: upload new directions map image via SaeromVisualEditor',
+            content: uploadedMap.base64,
+            sha: imgSha || undefined,
+            branch: 'main'
+          })
+        });
+
+        if (!imgPutRes.ok) {
+          const imgErr = await imgPutRes.json();
+          throw new Error('약도 이미지 업로드 실패: ' + (imgErr.message || '알 수 없는 오류'));
+        }
+      }
+
+      // Step 2: Now publish index.html
+      btnPublish.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 배포 파일 빌드 중...';
       const cleanHTML = getCleanHTML();
       
       btnPublish.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 깃허브 연결 확인 중...';
       
-      // Step 1: Request the SHA of index.html from GitHub
       const fileUrl = `https://api.github.com/repos/${user}/${repo}/contents/index.html`;
       const response = await fetch(fileUrl, {
         headers: {
@@ -409,10 +585,10 @@ window.SaeromVisualEditor = (function() {
 
       btnPublish.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 실시간 커밋 푸시 중...';
 
-      // Step 2: Unicode safe Base64 encoder
+      // Unicode safe Base64 encoder
       const base64Content = btoa(unescape(encodeURIComponent(cleanHTML)));
 
-      // Step 3: Put the updated file content to GitHub repo
+      // Put the updated HTML content to GitHub repo
       const putResponse = await fetch(fileUrl, {
         method: 'PUT',
         headers: {
