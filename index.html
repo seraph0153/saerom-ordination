@@ -38,11 +38,11 @@
         <span class="editable">새롬교회</span>
       </a>
       <ul class="nav-menu">
-        <li><a href="#introduction" class=""><i class="fa-regular fa-envelope"></i> <span class="editable">초청</span></a></li>
-        <li><a href="#officers" class=""><i class="fa-regular fa-user"></i> <span class="editable">임직자</span></a></li>
-        <li><a href="#details" class=""><i class="fa-regular fa-calendar-check"></i> <span class="editable">예배안내</span></a></li>
-        <li><a href="#directions" class=""><i class="fa-solid fa-map-location-dot"></i> <span class="editable">오시는길</span></a></li>
-        <li><a href="#guestbook" class="active"><i class="fa-regular fa-comment-dots"></i> <span class="editable">축하방명록</span></a></li>
+        <li><a href="#introduction" class="active"><i class="fa-regular fa-envelope"></i> <span class="editable">초청</span></a></li>
+        <li><a href="#officers"><i class="fa-regular fa-user"></i> <span class="editable">임직자</span></a></li>
+        <li><a href="#details"><i class="fa-regular fa-calendar-check"></i> <span class="editable">예배안내</span></a></li>
+        <li><a href="#directions"><i class="fa-solid fa-map-location-dot"></i> <span class="editable">오시는길</span></a></li>
+        <li><a href="#guestbook"><i class="fa-regular fa-comment-dots"></i> <span class="editable">축하방명록</span></a></li>
       </ul>
     </div>
   </nav>
@@ -50,17 +50,17 @@
   <!-- Hero Section -->
   <header class="hero-section" id="hero">
     <!-- Main Card Body -->
-    <div class="hero-card-container fade-in-up delay-2" style="position: relative;">
+    <div class="hero-card-container fade-in-up delay-2" style="position: relative; border-radius: 0px; margin-top: -55px; width: 90vh;">
       <!-- Slogan Badge overlay -->
-      <div class="hero-slogan-badge" style="left: -6%; top: 5%; display: block;">
-        <img src="assets/slogan_badge.png" alt="2026 표어">
+      <div class="hero-slogan-badge" style="left: 0.5%; top: 4.5%;">
+        <img src="assets/slogan_badge.png" alt="2026 표어" style="border-radius: 0px;">
       </div>
       <!-- Clean Invitation Card Image -->
-      <img src="assets/hero_card_clean.png" alt="새롬교회 임직감사예배 초청장" class="hero-card-img">
+      <img src="assets/hero_card_clean.png" alt="새롬교회 임직감사예배 초청장" class="hero-card-img" style="object-fit: cover;">
     </div>
 
     <!-- Ordained Officers Names (HTML Text Overlay) -->
-    <div class="hero-officer-names fade-in-up delay-3">
+    <div class="hero-officer-names fade-in-up delay-3" style="margin-top: 0px;">
       <div class="officers-group">
         <span class="role-badge blue editable">안수집사</span>
         <span class="names-list editable">안민희</span>
@@ -92,7 +92,7 @@
         <h2 class="section-title text-center editable">초청의 글</h2>
         <div class="intro-letter">
           <p class="editable">하나님의 크신 은혜와 평강이 귀 댁에 가득하시기를 기원합니다.</p>
-          <p class="editable">날마다 더 새로워지는 새롬교회가 주님의 크신 인도하심 속, 몸 된 교회를 더욱 신실하게 섬길 새로운 직분자를 세우는 임직감사예배를 하나님께 드리게 되었습니다.</p>
+          <p class="editable">날마다 더 새로워지는 새롬교회가 주님의 크신 인도하심 속에,&nbsp;<span style="font-size: 1.05rem;">몸 된 교회를 더욱 신실하게 섬길 새로운 직분자를 세우는 임직감사예배를 하나님께 드리게 되었습니다.</span></p>
           <p class="editable">오셔서 평생동행의 약속 위에 첫걸음을 딛는 일꾼들을 축복해 주시고, 감사의 자리를 은혜와 기쁨으로 함께 빛내어 주시기를 소망합니다.</p>
           
           <div class="pastor-signature">
@@ -309,7 +309,7 @@
     <div class="container">
       <div class="details-layout">
         <!-- Event Details Card -->
-        <div class="card details-card reveal-on-scroll revealed">
+        <div class="card details-card reveal-on-scroll">
           <h2 class="section-title editable">예배 및 안내</h2>
           <ul class="details-list">
             <li>
@@ -354,7 +354,7 @@
         </div>
 
         <!-- Countdown Card -->
-        <div class="card countdown-card reveal-on-scroll revealed">
+        <div class="card countdown-card reveal-on-scroll">
           <h3 class="countdown-heading">임직식까지 남은 시간</h3>
           <div class="countdown-timer" id="countdownTimer">
             <div class="time-block">
@@ -366,11 +366,11 @@
               <span class="label">시간</span>
             </div>
             <div class="time-block">
-              <span class="number" id="minutes">33</span>
+              <span class="number" id="minutes">31</span>
               <span class="label">분</span>
             </div>
             <div class="time-block">
-              <span class="number" id="seconds">28</span>
+              <span class="number" id="seconds">09</span>
               <span class="label">초</span>
             </div>
           </div>
@@ -385,8 +385,8 @@
   <!-- Directions Section -->
   <section class="directions-section" id="directions">
     <div class="container">
-      <h2 class="section-title text-center reveal-on-scroll editable revealed">오시는 길</h2>
-      <div class="directions-wrapper reveal-on-scroll revealed">
+      <h2 class="section-title text-center reveal-on-scroll editable">오시는 길</h2>
+      <div class="directions-wrapper reveal-on-scroll">
         <!-- Directions Image Card -->
         <div class="directions-card-container">
           <img src="assets/directions_card.jpg" alt="새롬교회 오시는 길 약도" class="directions-card-img">
@@ -411,12 +411,12 @@
   <!-- Guestbook Section -->
   <section class="guestbook-section" id="guestbook">
     <div class="container">
-      <h2 class="section-title text-center reveal-on-scroll editable revealed">축하 방명록</h2>
-      <p class="section-subtitle text-center reveal-on-scroll editable revealed">새로운 임직자들에게 사랑과 축하의 메시지를 남겨주세요.</p>
+      <h2 class="section-title text-center reveal-on-scroll editable">축하 방명록</h2>
+      <p class="section-subtitle text-center reveal-on-scroll editable">새로운 임직자들에게 사랑과 축하의 메시지를 남겨주세요.</p>
       
       <div class="guestbook-layout">
         <!-- Message Write Form -->
-        <div class="card guestbook-form-card reveal-on-scroll revealed">
+        <div class="card guestbook-form-card reveal-on-scroll">
           <form id="commentForm">
             <div class="form-row">
               <div class="form-group">
@@ -451,7 +451,7 @@
         </div>
 
         <!-- Message List -->
-        <div class="guestbook-list-container reveal-on-scroll revealed">
+        <div class="guestbook-list-container reveal-on-scroll">
           <div class="guestbook-stats">
             <span>등록된 메시지 <strong id="commentCount">3</strong>개</span>
           </div>
@@ -506,7 +506,7 @@
   <!-- Share & Utility Section -->
   <footer class="footer">
     <div class="container text-center">
-      <div class="footer-share-box reveal-on-scroll revealed">
+      <div class="footer-share-box reveal-on-scroll">
         <h3 class="editable">기쁜 소식을 널리 공유해 주세요</h3>
         <div class="share-buttons">
           <button class="btn-share share-kakao" id="kakaoShareBtn" aria-label="카카오톡 공유">
