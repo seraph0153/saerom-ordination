@@ -1739,12 +1739,12 @@ textarea:focus {
   .floating-nav {
     position: fixed;
     top: auto !important; /* Force bottom position */
-    bottom: 16px !important; /* Floating offset from bottom */
+    bottom: clamp(10px, 2.5vh, 20px) !important; /* Floating offset from bottom scaled dynamically */
     left: 50% !important;
     transform: translateX(-50%) !important;
     width: 92% !important;
     max-width: 480px;
-    padding: 6px 8px !important;
+    padding: clamp(4px, 1.2vw, 8px) clamp(6px, 1.8vw, 12px) !important; /* Scaled padding */
     border-radius: 35px !important;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12) !important;
     border: 1px solid rgba(255, 255, 255, 0.7) !important;
@@ -1756,7 +1756,7 @@ textarea:focus {
   /* Ensure scrolled state maintains bottom positioning */
   .floating-nav.scrolled {
     top: auto !important;
-    bottom: 16px !important;
+    bottom: clamp(10px, 2.5vh, 20px) !important;
     width: 92% !important;
     box-shadow: 0 10px 35px rgba(14, 58, 130, 0.15) !important;
   }
@@ -1783,13 +1783,13 @@ textarea:focus {
     justify-content: center;
   }
 
-  /* Vertical icon + text labels inside bottom dock */
+  /* Vertical icon + text labels inside bottom dock (responsively scaled) */
   .floating-nav .nav-menu a {
     flex-direction: column !important;
     gap: 2px !important;
-    font-size: 0.65rem !important;
+    font-size: clamp(0.55rem, 2.3vw, 0.8rem) !important; /* Scales smoothly from 8.8px to 12.8px */
     font-weight: 600;
-    padding: 6px 4px !important;
+    padding: clamp(4px, 1.2vw, 8px) clamp(2px, 0.8vw, 6px) !important; /* Scaled padding */
     border-radius: 16px !important;
     color: var(--text-muted) !important;
     width: 100%;
@@ -1797,7 +1797,7 @@ textarea:focus {
   }
 
   .floating-nav .nav-menu a i {
-    font-size: 1.15rem !important; /* Emphasize icon */
+    font-size: clamp(1rem, 4vw, 1.3rem) !important; /* Scales smoothly from 16px to 20.8px */
     margin: 0;
   }
 
